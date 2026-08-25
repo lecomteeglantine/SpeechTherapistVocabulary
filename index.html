@@ -43,18 +43,42 @@
       </details>
       </div>
     </div>
-    <nav class="main-nav feature-nav" aria-label="Main navigation">
+    <nav class="main-nav" aria-label="Main navigation">
       <button data-page="home" class="active home-nav" aria-current="page"><span aria-hidden="true">⌂</span> Home</button>
-      <button data-page="lexicon"><span aria-hidden="true">📚</span> Lexicon</button>
-      <button data-page="search"><span aria-hidden="true">🔎</span> Dictionary</button>
-      <button data-page="pronunciation"><span aria-hidden="true">🎧</span> Pronunciation</button>
-      <button data-page="flashcards"><span aria-hidden="true">🧠</span> Flashcards</button>
-      <button data-page="practice"><span aria-hidden="true">⚡</span> Practice</button>
-      <button data-page="test"><span aria-hidden="true">📊</span> Check-up</button>
-      <button data-page="cases"><span aria-hidden="true">🩺</span> Clinical Cases</button>
-      <button data-page="communication"><span aria-hidden="true">💬</span> Communication</button>
-      <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
-      <button data-page="progress"><span aria-hidden="true">📈</span> My Progress</button>
+
+      <details class="nav-menu-group" data-nav-pages="lexicon,search,pronunciation">
+        <summary><span aria-hidden="true">📚</span> Learn <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout">
+          <button data-page="lexicon"><span aria-hidden="true">📚</span><span><strong>Lexicon</strong><small>Browse the vocabulary</small></span></button>
+          <button data-page="search"><span aria-hidden="true">🔎</span><span><strong>Dictionary</strong><small>Look up a term fast</small></span></button>
+          <button data-page="pronunciation"><span aria-hidden="true">🎧</span><span><strong>Pronunciation</strong><small>Stress, sounds and workouts</small></span></button>
+        </div>
+      </details>
+
+      <details class="nav-menu-group" data-nav-pages="flashcards,practice,test">
+        <summary><span aria-hidden="true">⚡</span> Practise <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout">
+          <button data-page="flashcards"><span aria-hidden="true">🧠</span><span><strong>Flashcards</strong><small>Revise and rate recall</small></span></button>
+          <button data-page="practice"><span aria-hidden="true">⚡</span><span><strong>Practice</strong><small>Six quick game modes</small></span></button>
+          <button data-page="test"><span aria-hidden="true">📊</span><span><strong>Check-up</strong><small>24-question progress check</small></span></button>
+        </div>
+      </details>
+
+      <details class="nav-menu-group" data-nav-pages="cases,communication">
+        <summary><span aria-hidden="true">🩺</span> Clinical <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout">
+          <button data-page="cases"><span aria-hidden="true">🩺</span><span><strong>Clinical Cases</strong><small>Apply vocabulary to patients</small></span></button>
+          <button data-page="communication"><span aria-hidden="true">💬</span><span><strong>Communication Lab</strong><small>Explain, hand over and write</small></span></button>
+        </div>
+      </details>
+
+      <details class="nav-menu-group" data-nav-pages="notebook,progress">
+        <summary><span aria-hidden="true">♥</span> My Learning <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span> <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout nav-flyout-right">
+          <button data-page="notebook"><span aria-hidden="true">♥</span><span><strong>My Vocabulary</strong><small>Saved and mastered words</small></span></button>
+          <button data-page="progress"><span aria-hidden="true">📈</span><span><strong>My Progress</strong><small>Your signals and next step</small></span></button>
+        </div>
+      </details>
     </nav>
   </div>
 </header>

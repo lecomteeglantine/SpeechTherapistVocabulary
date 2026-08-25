@@ -1,4 +1,4 @@
-/* Speech Therapy English — V13 Pronunciation Lab
+/* Speech Therapy English — V15 Pronunciation Lab
    Self-assessment only. No remote speech analysis and no recording upload. */
 (() => {
   const PRON_STATS_KEY='stePronunciationStatsV12';
@@ -20,7 +20,14 @@
     ['Phonation',['pho','na','tion'],1],['Respiration',['res','pi','ra','tion'],2],['Resonance',['res','o','nance'],0],
     ['Dysphonia',['dys','pho','ni','a'],1],['Hoarseness',['hoarse','ness'],0],['Stroboscopy',['stro','bos','co','py'],1],
     ['Laryngoscopy',['lar','yn','gos','co','py'],2],['Papillomatosis',['pap','il','lo','ma','to','sis'],4],['Hypophonia',['hy','po','pho','ni','a'],2],
-    ['Granuloma',['gran','u','lo','ma'],2],['Amplification',['am','pli','fi','ca','tion'],3],['Aerodynamic support',null,null,'ae-ro-dy-NAM-ic sup-PORT']
+    ['Granuloma',['gran','u','lo','ma'],2],['Amplification',['am','pli','fi','ca','tion'],3],['Aerodynamic support',null,null,'ae-ro-dy-NAM-ic sup-PORT'],
+    ['Developmental milestone',null,null,'de-vel-op-MEN-tal MILE-stone'],['Communicative intent',null,null,'com-MU-ni-ca-tive in-TENT'],['Joint attention',null,null,'JOINT at-TEN-tion'],
+    ['Canonical babbling',null,null,'ca-NON-i-cal BAB-bling'],['Receptive language',null,null,'re-CEP-tive LAN-guage'],['Expressive language',null,null,'ex-PRES-sive LAN-guage'],
+    ['Multiword utterance',null,null,'MUL-ti-word UT-ter-ance'],['Receptive vocabulary',null,null,'re-CEP-tive vo-CAB-u-la-ry'],['Lexical diversity',null,null,'LEX-i-cal di-VER-si-ty'],
+    ['Morphosyntax',['mor','pho','syn','tax'],2],['Grammatical morpheme',null,null,'gram-MAT-i-cal MOR-pheme'],['Telegraphic speech',null,null,'tel-e-GRAPH-ic SPEECH'],
+    ['Symbolic play',null,null,'sym-BOL-ic PLAY'],['Pragmatic development',null,null,'prag-MAT-ic de-VEL-op-ment'],['Developmental Language Disorder',null,null,'de-vel-op-MEN-tal LAN-guage dis-OR-der'],
+    ['Late language emergence',null,null,'LATE LAN-guage e-MER-gence'],['Standardised assessment',null,null,'STAN-dard-ised as-SESS-ment'],['Criterion-referenced assessment',null,null,'cri-TE-ri-on REF-er-enced as-SESS-ment'],
+    ['Naturalistic intervention',null,null,'nat-u-ra-LIS-tic in-ter-VEN-tion']
   ];
 
   const TERM_MAP=new Map(VOCABULARY.map(v=>[v.term.toLowerCase(),v]));
@@ -155,7 +162,7 @@
   function sourcePool(){
     const source=document.querySelector('#pronSource')?.value||'all';
     let pool=PRON_BANK;
-    if(['18','19','20'].includes(source))pool=pool.filter(x=>x.v.chapter===source);
+    if(['18','19','20','21'].includes(source))pool=pool.filter(x=>x.v.chapter===source);
     if(source==='saved')pool=pool.filter(x=>notebook.includes(x.v.id));
     if(source==='review'){const ids=new Set(reviewIds());pool=pool.filter(x=>ids.has(x.v.id))}
     return pool;
