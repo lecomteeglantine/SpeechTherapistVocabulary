@@ -135,3 +135,42 @@ main{padding:1.3rem 1rem 2.5rem}.page{display:none}.page.active{display:block}.e
 @media(max-width:760px){.main-nav{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.25rem;scrollbar-width:thin}.main-nav>.home-nav,.nav-menu-group{flex:0 0 auto}.nav-flyout{position:fixed;left:1rem!important;right:1rem!important;top:auto;min-width:0;margin-top:.15rem}.path-grid{grid-template-columns:1fr}.install-strip{grid-template-columns:1fr}.install-card-actions{justify-content:flex-start}.launch-card{grid-template-columns:1fr}.launch-icon{width:42px;height:42px}.path-card{padding:1rem}}
 @media(max-width:520px){.nav-menu-group>summary{padding:.48rem .62rem}.nav-menu-group>summary .nav-count{display:none}.launch-actions button,.path-links button,.install-card-actions button{width:100%}.install-strip-main{align-items:flex-start}.mini-dashboard{margin-top:.75rem}}
 @media print{.learning-launchpad,.install-strip,.path-grid{display:none!important}}
+
+
+/* V14.1 — expanded showcase navigation */
+.feature-nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:stretch;
+  gap:.72rem;
+  margin-top:1rem;
+  padding-top:.82rem;
+  border-top:1px solid rgba(255,255,255,.18);
+}
+.feature-nav>button{
+  flex:1 1 155px;
+  max-width:190px;
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.38rem;
+  padding:.62rem .82rem;
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.4);
+  font-size:.9rem;
+  white-space:nowrap;
+}
+.feature-nav>button:hover{background:rgba(255,255,255,.18);transform:translateY(-1px)}
+.feature-nav>button.active{background:#fff;color:#174f7f;box-shadow:0 6px 18px rgba(13,39,72,.14)}
+.feature-nav .nav-count{margin-left:.1rem}
+.reduce-motion .feature-nav>button:hover{transform:none}
+@media(max-width:920px){
+  .feature-nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;padding-bottom:.35rem;scrollbar-width:thin}
+  .feature-nav>button{flex:0 0 auto;max-width:none;min-height:42px}
+}
+@media(max-width:560px){
+  .feature-nav{gap:.48rem;margin-top:.75rem;padding-top:.65rem}
+  .feature-nav>button{padding:.52rem .68rem;font-size:.86rem}
+}

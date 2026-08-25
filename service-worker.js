@@ -1,4 +1,4 @@
-const CACHE_NAME='speech-therapy-english-stable-v14-20260825';
+const CACHE_NAME='speech-therapy-english-stable-v14-1-20260825';
 const APP_SHELL=[
   './','./index.html','./styles.css','./app.js','./vocabulary.js','./manifest.webmanifest',
   './communication.js','./pronunciation.js','./offline.html','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./apple-touch-icon.png'
