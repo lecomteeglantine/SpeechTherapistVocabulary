@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Accessible clinical English vocabulary learning platform for speech and language therapy students.">
   <meta name="theme-color" content="#1b5c8f">
+  <meta name="application-version" content="5.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-v5.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -131,21 +132,113 @@
   </section>
 
   <section id="flashcards" class="page">
-    <div class="page-title"><span class="page-icon" aria-hidden="true">🧠</span><div><span class="eyebrow">Revise</span><h2>Flashcards</h2><p>Flip a card, listen to the word and decide what deserves another round.</p></div></div>
-    <section class="panel flash-controls">
-      <label>Deck<select id="flashChapter"><option value="">All vocabulary</option><option value="__saved">♥ My saved words</option><option value="__review">↻ Saved words to review</option></select></label>
-      <p id="flashProgress"></p>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🧠</span><div><span class="eyebrow">Smart revision</span><h2>Flashcards</h2><p>Reveal the meaning, rate how well you knew it, and let difficult words come back sooner.</p></div></div>
+
+    <section class="flash-toolbar" aria-label="Flashcard settings">
+      <label>Revise
+        <select id="flashChapter">
+          <option value="">All vocabulary</option>
+          <option value="__saved">♥ My Vocabulary</option>
+          <option value="__review">↻ To review</option>
+        </select>
+      </label>
+      <label>Session size
+        <select id="flashSize">
+          <option value="10">10 cards</option>
+          <option value="20" selected>20 cards</option>
+          <option value="30">30 cards</option>
+          <option value="all">All cards</option>
+        </select>
+      </label>
+      <button id="newFlashSession" class="primary-action">↻ New session</button>
     </section>
-    <div id="flash"></div>
-    <div class="card-actions centre-actions"><button id="prev">← Previous</button><button id="shuffle">🔀 Shuffle</button><button id="next">Next →</button></div>
+
+    <section class="flash-session-bar" aria-label="Flashcard session progress">
+      <div>
+        <span class="flash-progress-label" id="flashProgress">0 / 0</span>
+        <span class="flash-progress-note" id="flashProgressNote">Choose a deck to begin.</span>
+      </div>
+      <div class="flash-mini-stats" aria-label="Session ratings">
+        <span class="again-stat"><b id="flashAgainCount">0</b> Again</span>
+        <span class="hard-stat"><b id="flashHardCount">0</b> Hard</span>
+        <span class="got-stat"><b id="flashGotCount">0</b> Got it</span>
+      </div>
+      <div class="flash-progress-track" aria-hidden="true"><div id="flashProgressBar"></div></div>
+    </section>
+
+    <div id="flash" aria-live="polite"></div>
+
+    <div id="flashRating" class="flash-rating" hidden aria-label="Rate this flashcard">
+      <button class="rating-btn rating-again" data-flash-rate="again"><span>↻</span><strong>Again</strong><small>Bring it back soon</small><kbd>1</kbd></button>
+      <button class="rating-btn rating-hard" data-flash-rate="hard"><span>◐</span><strong>Hard</strong><small>I nearly had it</small><kbd>2</kbd></button>
+      <button class="rating-btn rating-got" data-flash-rate="got"><span>✓</span><strong>Got it</strong><small>Move on</small><kbd>3</kbd></button>
+    </div>
+
+    <div class="flash-footer-actions">
+      <button id="prev">← Previous</button>
+      <button id="shuffle">🔀 Shuffle remaining</button>
+      <button id="next">Skip →</button>
+    </div>
+    <p class="flash-key-hint extra">Keyboard: <kbd>Enter</kbd> flip · <kbd>1</kbd> Again · <kbd>2</kbd> Hard · <kbd>3</kbd> Got it</p>
   </section>
 
   <section id="practice" class="page">
-    <div class="page-title"><span class="page-icon" aria-hidden="true">⚡</span><div><span class="eyebrow">Quick practice</span><h2>Practice</h2><p>Untimed questions with immediate feedback.</p></div></div>
-    <section class="panel compact-controls">
-      <label>Practise with<select id="practiceSource"><option value="all">All vocabulary</option><option value="saved">♥ My saved words</option><option value="review">↻ Saved words to review</option></select></label>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">⚡</span><div><span class="eyebrow">Play · practise · remember</span><h2>Practice Games</h2><p>Pick a mode, do a short session and get immediate feedback. No timers, no pressure.</p></div></div>
+
+    <section class="practice-mode-grid" aria-label="Choose a practice game">
+      <button class="practice-mode-card mode-definition selected" data-practice-mode="definition" aria-pressed="true">
+        <span class="practice-mode-icon" aria-hidden="true">🕵️</span><span class="practice-mode-kicker">MEANING → WORD</span><strong>Definition Detective</strong><span>Read a clinical definition and identify the right term.</span>
+      </button>
+      <button class="practice-mode-card mode-french" data-practice-mode="french" aria-pressed="false">
+        <span class="practice-mode-icon" aria-hidden="true">🇫🇷</span><span class="practice-mode-kicker">FR → EN</span><strong>French → English</strong><span>Turn the French equivalent back into professional English.</span>
+      </button>
+      <button class="practice-mode-card mode-cloze" data-practice-mode="cloze" aria-pressed="false">
+        <span class="practice-mode-icon" aria-hidden="true">🩺</span><span class="practice-mode-kicker">IN CONTEXT</span><strong>Clinical Gap</strong><span>Complete a real clinical example with the missing term.</span>
+      </button>
+      <button class="practice-mode-card mode-listen" data-practice-mode="listen" aria-pressed="false">
+        <span class="practice-mode-icon" aria-hidden="true">🎧</span><span class="practice-mode-kicker">HEAR IT</span><strong>Listen &amp; Spot</strong><span>Listen to the term, then choose what you heard.</span>
+      </button>
+      <button class="practice-mode-card mode-collocation" data-practice-mode="collocation" aria-pressed="false">
+        <span class="practice-mode-icon" aria-hidden="true">🔗</span><span class="practice-mode-kicker">USE IT NATURALLY</span><strong>Collocation Match</strong><span>Choose the phrase that naturally belongs with the target term.</span>
+      </button>
+      <button class="practice-mode-card mode-mix" data-practice-mode="mix" aria-pressed="false">
+        <span class="practice-mode-icon" aria-hidden="true">🎲</span><span class="practice-mode-kicker">SURPRISE ME</span><strong>Mix It Up</strong><span>A shuffled blend of the different practice modes.</span>
+      </button>
     </section>
-    <section id="practiceBox"></section>
+
+    <section class="practice-toolbar" aria-label="Practice session settings">
+      <div class="practice-selected-mode"><span>Selected game</span><strong id="practiceModeName">Definition Detective</strong></div>
+      <label>Practise with
+        <select id="practiceSource">
+          <option value="all">All vocabulary</option>
+          <option value="saved">♥ My saved words</option>
+          <option value="review">↻ Saved words to review</option>
+        </select>
+      </label>
+      <label>Session
+        <select id="practiceSize">
+          <option value="5">5 questions</option>
+          <option value="10" selected>10 questions</option>
+          <option value="15">15 questions</option>
+        </select>
+      </label>
+      <button id="startPractice" class="practice-start primary-action">▶ Start game</button>
+    </section>
+
+    <section id="practiceSessionBar" class="practice-session-bar" hidden aria-label="Practice session progress">
+      <div><strong id="practiceProgress">Question 0 / 0</strong><span id="practiceModeMini">Definition Detective</span></div>
+      <div class="practice-score-pills"><span>✓ <b id="practiceCorrect">0</b> correct</span><span>✕ <b id="practiceMissed">0</b> missed</span><span>🔥 <b id="practiceStreak">0</b> streak</span></div>
+      <div class="practice-progress-track" aria-hidden="true"><div id="practiceProgressBar"></div></div>
+    </section>
+
+    <section id="practiceBox" aria-live="polite">
+      <div class="practice-welcome">
+        <div class="practice-welcome-icon" aria-hidden="true">⚡</div>
+        <span class="eyebrow">Choose your game</span>
+        <h3>Five minutes of useful practice beats twenty minutes of scrolling.</h3>
+        <p>Pick a mode above, choose your vocabulary set, then start a short untimed session.</p>
+      </div>
+    </section>
   </section>
 
   <section id="cases" class="page">
@@ -198,7 +291,7 @@
   <p><strong>Speech Therapy English</strong> · Accessible learning platform.</p>
   <p>No account required. No personal data is sent by this static site. Vocabulary notebook and accessibility preferences are stored locally in your browser.</p>
 </footer>
-<script src="vocabulary.js"></script>
-<script src="app.js"></script>
+<script src="vocabulary-v5.js"></script>
+<script src="app-v5.js"></script>
 </body>
 </html>
