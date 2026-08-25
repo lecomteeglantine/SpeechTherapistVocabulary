@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="application-version" content="10.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v10.css">
+  <link rel="stylesheet" href="styles-v11.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -49,6 +49,7 @@
       <button data-page="flashcards"><span aria-hidden="true">🧠</span> Flashcards</button>
       <button data-page="practice"><span aria-hidden="true">⚡</span> Practice</button>
       <button data-page="cases"><span aria-hidden="true">🩺</span> Cases</button>
+      <button data-page="communication"><span aria-hidden="true">💬</span> Communication</button>
       <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
       <button data-page="progress"><span aria-hidden="true">📈</span> My Progress</button>
       <button data-page="test"><span aria-hidden="true">📊</span> Check-up</button>
@@ -130,6 +131,10 @@
       <button class="activity-card card-green" data-go="cases">
         <span class="activity-icon" aria-hidden="true">🩺</span><span class="activity-kicker">APPLY</span>
         <strong>Think clinically</strong><span>Use vocabulary in realistic patient situations.</span><span class="arrow">Open a case →</span>
+      </button>
+      <button class="activity-card card-indigo" data-go="communication">
+        <span class="activity-icon" aria-hidden="true">💬</span><span class="activity-kicker">COMMUNICATE</span>
+        <strong>Use it professionally</strong><span>Explain, hand over, ask, recommend and write in clinical English.</span><span class="arrow">Open the lab →</span>
       </button>
       <button class="activity-card card-pink" data-go="notebook">
         <span class="activity-icon" aria-hidden="true">♥</span><span class="activity-kicker">MAKE IT YOURS</span>
@@ -304,6 +309,18 @@
 
     <section id="caseGrid" class="case-grid" aria-live="polite"></section>
     <section id="caseWorkspace" class="case-workspace" hidden aria-live="polite"></section>
+  </section>
+
+  <section id="communication" class="page">
+    <div class="page-title"><span class="page-icon" aria-hidden="true">💬</span><div><span class="eyebrow">Clinical Communication Lab</span><h2>Know the words. Now use them.</h2><p>Practise the language of real speech and language therapy: patient explanations, case presentations, handovers, notes, assessment questions and recommendations.</p></div></div>
+    <section class="comm-hero">
+      <div><span class="eyebrow">From terminology to professional communication</span><h3>Same clinical knowledge. Different audience.</h3><p>A patient, a colleague and a clinical note do not need the same English. Choose a task and decide how much support you want.</p><div class="comm-hero-actions"><button id="randomCommunication" class="primary-action">🎲 Random task</button><button id="communicationHow">? How the modes work</button></div></div>
+      <aside class="comm-hero-side"><div class="comm-stat"><strong id="communicationDone">0</strong><span>tasks explored</span></div><div class="comm-stat"><strong id="communicationModesDone">0</strong><span>modes completed</span></div><small>Completion is self-reported. The site does not grade clinical judgement or writing quality.</small></aside>
+    </section>
+    <section id="communicationHelp" class="comm-help" hidden><article><strong>🧭 Guided</strong><p>Complete short language choices and compare with a clear professional model.</p></article><article><strong>🩺 Clinical</strong><p>Write with useful language, a checklist and a limited keyword self-check.</p></article><article><strong>🔥 Challenge</strong><p>Respond with minimal scaffolding, then reveal the checklist and model.</p></article></section>
+    <details class="comm-language-bank extra"><summary>🧰 Open the Useful Language Bank</summary><div class="comm-language-grid"><article><strong>To a patient</strong><span>What this means is…</span><span>You may notice…</span><span>The aim is to…</span></article><article><strong>Case presentation</strong><span>The patient presents with…</span><span>Key findings include…</span><span>This may suggest…</span></article><article><strong>Handover</strong><span>The main concern is…</span><span>So far, we have…</span><span>The next step is…</span></article><article><strong>Clinical note</strong><span>Reports…</span><span>Observed…</span><span>Plan / recommendation…</span></article><article><strong>Assessment</strong><span>When did this start?</span><span>Does it get worse when…?</span><span>How does this affect…?</span></article><article><strong>Cautious language</strong><span>may be associated with…</span><span>raises concern about…</span><span>requires further assessment…</span></article></div></details>
+    <section class="panel comm-browser-controls"><label>Skill<select id="communicationSkill"><option value="all">All skills</option><option value="patient">Explain to a patient</option><option value="case">Present a case</option><option value="handover">Clinical handover</option><option value="note">Clinical note</option><option value="interview">Assessment questions</option><option value="recommendations">Advice & recommendations</option><option value="uncertainty">Handle uncertainty</option><option value="register">Professional ↔ plain English</option></select></label><label>Area<select id="communicationArea"><option value="all">All areas</option><option value="18">Dysphagia</option><option value="19">Neuro & communication</option><option value="20">Voice</option></select></label><label>Support<select id="communicationMode"><option value="guided">Guided</option><option value="clinical">Clinical</option><option value="challenge">Challenge</option></select></label><div class="comm-browser-count"><strong id="communicationCount">12</strong><span>tasks available</span></div></section>
+    <section id="communicationGrid" class="comm-grid" aria-live="polite"></section><section id="communicationWorkspace" class="comm-workspace" hidden aria-live="polite"></section>
   </section>
 
   <section id="notebook" class="page">
@@ -488,12 +505,13 @@
     <p class="footer-credit"><strong>Designed and created by Eglantine Lecomte and Amaury Lemoine, with the assistance of ChatGPT.</strong></p>
     <div class="privacy-note" aria-label="Privacy and GDPR information">
       <p><strong>Privacy &amp; GDPR</strong> · This learning tool is designed according to data-minimisation principles. No account is required, and the site itself does not collect, transmit or store personal data on a remote server.</p>
-      <p>Saved vocabulary, learning progress, flashcard results, recent practice summaries, progress-check history, 5-minute-session history, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
+      <p>Saved vocabulary, learning progress, flashcard results, recent practice summaries, progress-check history, 5-minute-session history, recent dictionary searches, Clinical Communication progress and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
       <p class="hosting-note">The website is hosted on GitHub Pages. Standard technical connection data may therefore be processed by GitHub as hosting provider under its own privacy policy.</p>
     </div>
   </div>
 </footer>
-<script src="vocabulary-v10.js"></script>
-<script src="app-v10.js"></script>
+<script src="vocabulary-v11.js"></script>
+<script src="app-v11.js"></script>
+<script src="communication-v11.js"></script>
 </body>
 </html>
