@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Accessible clinical English vocabulary learning platform for speech and language therapy students.">
+  <meta name="theme-color" content="#1b5c8f">
   <title>Speech Therapy English – Accessible Learning Platform</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,139 +12,191 @@
 <a class="skip" href="#main">Skip to main content</a>
 <header>
   <div class="wrap">
-    <div class="brand-row">
-      <div class="brand-mark" aria-hidden="true">💬</div>
-      <div>
-        <h1>Speech Therapy English</h1>
-        <p class="tagline">Clinical English vocabulary for speech and language therapy students</p>
+    <div class="top-row">
+      <div class="brand-row">
+        <div class="brand-mark" aria-hidden="true">💬</div>
+        <div>
+          <h1>Speech Therapy English</h1>
+          <p class="tagline">Clinical English for speech and language therapy students</p>
+        </div>
       </div>
+      <details class="a11y-shell">
+        <summary>⚙ Accessibility</summary>
+        <div class="a11y" aria-label="Accessibility settings">
+          <button id="aMinus" aria-label="Decrease text size">A−</button>
+          <button id="aPlus" aria-label="Increase text size">A+</button>
+          <button id="dark">Dark mode</button>
+          <button id="contrast">High contrast</button>
+          <button id="simple">Simple layout</button>
+          <button id="motion">Reduce motion</button>
+        </div>
+      </details>
     </div>
     <nav aria-label="Main navigation">
-      <button data-page="home" class="active" aria-current="page">Home</button>
-      <button data-page="lexicon">Lexicon</button>
-      <button data-page="flashcards">Flashcards</button>
-      <button data-page="practice">Practice</button>
-      <button data-page="cases">Clinical Cases</button>
-      <button data-page="test">Progress Test</button>
-      <button data-page="search">Search Engine</button>
+      <button data-page="home" class="active" aria-current="page"><span aria-hidden="true">⌂</span> Home</button>
+      <button data-page="lexicon"><span aria-hidden="true">📚</span> Lexicon</button>
+      <button data-page="flashcards"><span aria-hidden="true">🧠</span> Flashcards</button>
+      <button data-page="practice"><span aria-hidden="true">⚡</span> Practice</button>
+      <button data-page="cases"><span aria-hidden="true">🩺</span> Cases</button>
+      <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
+      <button data-page="test"><span aria-hidden="true">🏆</span> Test</button>
+      <button data-page="search"><span aria-hidden="true">🔎</span> Search</button>
     </nav>
   </div>
 </header>
 
-<section class="a11y" aria-label="Accessibility settings">
-  <strong class="a11y-label">Accessibility</strong>
-  <button id="aMinus" aria-label="Decrease text size">A−</button>
-  <button id="aPlus" aria-label="Increase text size">A+</button>
-  <button id="dark">Dark mode</button>
-  <button id="contrast">High contrast</button>
-  <button id="simple">Simple layout</button>
-  <button id="motion">Reduce motion</button>
-</section>
-
 <main id="main">
   <section id="home" class="page active">
-    <div class="panel hero">
-      <div class="hero-main">
-        <span class="eyebrow">Learn · Revise · Use</span>
-        <h2>Build the English you need for clinical practice.</h2>
-        <p class="hero-copy">Explore specialist vocabulary, hear key terms, revise with flashcards and practise using clinical English at your own pace.</p>
+    <section class="hero-v3" aria-labelledby="homeTitle">
+      <div class="hero-bubble bubble-one" aria-hidden="true"></div>
+      <div class="hero-bubble bubble-two" aria-hidden="true"></div>
+      <div class="hero-copy-v3">
+        <span class="eyebrow" id="dailyGreeting">Ready for a vocab boost?</span>
+        <h2 id="homeTitle">Clinical English.<br><span>Less scrolling, more doing.</span></h2>
+        <p>Learn specialist vocabulary, save the words that matter, and turn them into your own revision deck.</p>
         <div class="hero-actions">
-          <button class="primary-action" data-go="lexicon">Start learning</button>
-          <button class="secondary-action" data-go="flashcards">Revise with flashcards</button>
+          <button class="primary-action" id="learnFive">✨ Give me 5 words</button>
+          <button class="secondary-action" id="quickRevision">⚡ Quick revision</button>
+          <button class="ghost-action" id="surpriseMe">🎲 Surprise me</button>
         </div>
       </div>
-      <aside class="hero-aside">
-        <h3>Designed for accessible learning</h3>
-        <ul>
-          <li>Adjustable text size</li>
-          <li>Dark and high-contrast modes</li>
-          <li>Simplified layout</li>
-          <li>Reduced-motion option</li>
-          <li>No forced timers</li>
-        </ul>
+      <aside class="word-spotlight" id="wordSpotlight" aria-live="polite">
+        <div class="spotlight-label">Word of the day</div>
+        <div id="spotlightContent"></div>
       </aside>
-    </div>
-
-    <div class="section-heading">
-      <h2>What would you like to do?</h2>
-      <p>Choose a learning route and jump straight in.</p>
-    </div>
-    <section class="home-grid" aria-label="Learning activities">
-      <button class="home-card" data-go="lexicon"><span class="icon" aria-hidden="true">📚</span><strong>Learn vocabulary</strong><span>Browse terms by chapter, topic and CEFR level.</span><span class="go">Open the lexicon →</span></button>
-      <button class="home-card" data-go="flashcards"><span class="icon" aria-hidden="true">🧠</span><strong>Revise with flashcards</strong><span>Flip, listen, shuffle and revise chapter by chapter.</span><span class="go">Start revising →</span></button>
-      <button class="home-card" data-go="practice"><span class="icon" aria-hidden="true">🎯</span><strong>Practise</strong><span>Answer untimed questions with immediate feedback.</span><span class="go">Practise now →</span></button>
-      <button class="home-card" data-go="cases"><span class="icon" aria-hidden="true">🩺</span><strong>Clinical cases</strong><span>Apply specialist vocabulary to realistic patient situations.</span><span class="go">Explore cases →</span></button>
-      <button class="home-card" data-go="search"><span class="icon" aria-hidden="true">🔎</span><strong>Look up a term</strong><span>Search English, French, definitions, examples and collocations.</span><span class="go">Search the dictionary →</span></button>
-      <button class="home-card" data-go="test"><span class="icon" aria-hidden="true">🏆</span><strong>Test yourself</strong><span>Take a 10-question progress check whenever you are ready.</span><span class="go">Take the test →</span></button>
     </section>
 
-    <div class="section-heading">
-      <h2>Inside the platform</h2>
-      <p>A quick overview of the learning content currently available.</p>
-    </div>
-    <section class="stats-grid" id="stats" aria-label="Platform statistics"></section>
+    <section class="mini-dashboard" aria-label="My learning dashboard">
+      <div><span class="dash-icon" aria-hidden="true">♥</span><strong id="homeSaved">0</strong><span>saved</span></div>
+      <div><span class="dash-icon" aria-hidden="true">✓</span><strong id="homeMastered">0</strong><span>mastered</span></div>
+      <div><span class="dash-icon" aria-hidden="true">↻</span><strong id="homeReview">0</strong><span>to review</span></div>
+      <button class="dashboard-link" data-go="notebook">Open My Vocabulary →</button>
+    </section>
 
-    <div class="privacy-note extra">
-      <div aria-hidden="true">🔐</div>
-      <p><strong>Privacy-friendly by design</strong>No account is required. The platform runs as a static website; accessibility preferences are stored locally in your browser.</p>
+    <section id="quickWords" class="quick-words" hidden aria-live="polite"></section>
+
+    <div class="section-heading punchy-heading">
+      <div>
+        <span class="eyebrow">Pick your mode</span>
+        <h2>What are you up for today?</h2>
+      </div>
+      <p>No timers. No streak guilt. Just useful practice.</p>
     </div>
+
+    <section class="activity-grid" aria-label="Learning activities">
+      <button class="activity-card card-blue" data-go="lexicon">
+        <span class="activity-icon" aria-hidden="true">📚</span><span class="activity-kicker">EXPLORE</span>
+        <strong>Learn vocabulary</strong><span>Browse by chapter, topic and CEFR level.</span><span class="arrow">Let’s go →</span>
+      </button>
+      <button class="activity-card card-purple" data-go="flashcards">
+        <span class="activity-icon" aria-hidden="true">🧠</span><span class="activity-kicker">REVISE</span>
+        <strong>Flip some cards</strong><span>Listen, reveal, shuffle — including your saved words.</span><span class="arrow">Start flipping →</span>
+      </button>
+      <button class="activity-card card-coral" data-go="practice">
+        <span class="activity-icon" aria-hidden="true">⚡</span><span class="activity-kicker">QUICK WIN</span>
+        <strong>Do a quick practice</strong><span>Immediate feedback, no clock ticking.</span><span class="arrow">Challenge me →</span>
+      </button>
+      <button class="activity-card card-green" data-go="cases">
+        <span class="activity-icon" aria-hidden="true">🩺</span><span class="activity-kicker">APPLY</span>
+        <strong>Think clinically</strong><span>Use vocabulary in realistic patient situations.</span><span class="arrow">Open a case →</span>
+      </button>
+      <button class="activity-card card-pink" data-go="notebook">
+        <span class="activity-icon" aria-hidden="true">♥</span><span class="activity-kicker">MAKE IT YOURS</span>
+        <strong>My Vocabulary</strong><span>Build a personal word bank and mark terms as mastered.</span><span class="arrow">Open notebook →</span>
+      </button>
+      <button class="activity-card card-yellow" data-go="search">
+        <span class="activity-icon" aria-hidden="true">🔎</span><span class="activity-kicker">FIND IT FAST</span>
+        <strong>Look up a term</strong><span>Search English, French, definitions and collocations.</span><span class="arrow">Search now →</span>
+      </button>
+    </section>
+
+    <section class="platform-strip extra" aria-label="Platform content">
+      <div><strong id="statTerms">0</strong><span>terms</span></div>
+      <div><strong id="statChapters">0</strong><span>chapters</span></div>
+      <div><strong id="statSections">0</strong><span>topic sections</span></div>
+      <div class="privacy-mini"><span aria-hidden="true">🔐</span><span><strong>Private by design</strong><small>Your notebook stays in this browser.</small></span></div>
+    </section>
   </section>
 
   <section id="lexicon" class="page">
-    <h2>Lexicon</h2>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">📚</span><div><span class="eyebrow">Explore</span><h2>Lexicon</h2><p>Browse specialist terms and save the ones you want to revisit.</p></div></div>
     <section class="panel filters">
-      <label>Search<input id="query" type="search"></label>
+      <label>Search<input id="query" type="search" placeholder="Try aspiration, aphasia, voice…"></label>
       <label>Chapter<select id="chapter"><option value="">All</option></select></label>
       <label>Section<select id="section"><option value="">All</option></select></label>
       <label>Level<select id="level"><option value="">All</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option></select></label>
     </section>
-    <p id="count"></p>
+    <p id="count" class="result-count"></p>
     <section id="results"></section>
   </section>
 
   <section id="flashcards" class="page">
-    <h2>Flashcards</h2>
-    <section class="panel">
-      <label>Chapter<select id="flashChapter"><option value="">All</option></select></label>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🧠</span><div><span class="eyebrow">Revise</span><h2>Flashcards</h2><p>Flip a card, listen to the word and decide what deserves another round.</p></div></div>
+    <section class="panel flash-controls">
+      <label>Deck<select id="flashChapter"><option value="">All vocabulary</option><option value="__saved">♥ My saved words</option><option value="__review">↻ Saved words to review</option></select></label>
       <p id="flashProgress"></p>
-      <div id="flash"></div>
-      <div class="card-actions"><button id="prev">Previous</button><button id="next">Next</button><button id="shuffle">Shuffle</button></div>
     </section>
+    <div id="flash"></div>
+    <div class="card-actions centre-actions"><button id="prev">← Previous</button><button id="shuffle">🔀 Shuffle</button><button id="next">Next →</button></div>
   </section>
 
   <section id="practice" class="page">
-    <h2>Practice</h2>
-    <p>Untimed practice with immediate feedback.</p>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">⚡</span><div><span class="eyebrow">Quick practice</span><h2>Practice</h2><p>Untimed questions with immediate feedback.</p></div></div>
+    <section class="panel compact-controls">
+      <label>Practise with<select id="practiceSource"><option value="all">All vocabulary</option><option value="saved">♥ My saved words</option><option value="review">↻ Saved words to review</option></select></label>
+    </section>
     <section id="practiceBox"></section>
   </section>
 
   <section id="cases" class="page">
-    <h2>Clinical Cases</h2>
-    <article class="card"><h3>Post-stroke aphasia</h3><p>A patient understands simple instructions but struggles with word retrieval and semantic errors.</p><p><b>Task:</b> Explain the case using three terms from Chapter 19.</p></article>
-    <article class="card"><h3>Teacher with dysphonia</h3><p>A teacher reports hoarseness, vocal fatigue and poor voice projection.</p><p><b>Task:</b> Suggest relevant vocabulary and strategies.</p></article>
-    <article class="card"><h3>Progressive MND</h3><p>A patient wants to prepare for future communication needs.</p><p><b>Task:</b> Use AAC, voice banking and message banking.</p></article>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🩺</span><div><span class="eyebrow">Apply</span><h2>Clinical Cases</h2><p>Move from knowing a word to using it professionally.</p></div></div>
+    <section class="case-grid">
+      <article class="case-card"><span class="case-number">01</span><span class="case-tag">Neuro</span><h3>Post-stroke aphasia</h3><p>A patient understands simple instructions but struggles with word retrieval and semantic errors.</p><p><b>Your task:</b> Explain the case using three terms from Chapter 19.</p><button data-go="lexicon" class="case-action">Find useful terms →</button></article>
+      <article class="case-card"><span class="case-number">02</span><span class="case-tag">Voice</span><h3>Teacher with dysphonia</h3><p>A teacher reports hoarseness, vocal fatigue and poor voice projection.</p><p><b>Your task:</b> Suggest relevant vocabulary and strategies.</p><button data-go="lexicon" class="case-action">Find useful terms →</button></article>
+      <article class="case-card"><span class="case-number">03</span><span class="case-tag">AAC</span><h3>Progressive MND</h3><p>A patient wants to prepare for future communication needs.</p><p><b>Your task:</b> Use AAC, voice banking and message banking.</p><button data-go="lexicon" class="case-action">Find useful terms →</button></article>
+    </section>
+  </section>
+
+  <section id="notebook" class="page">
+    <div class="page-title"><span class="page-icon" aria-hidden="true">♥</span><div><span class="eyebrow">Make it yours</span><h2>My Vocabulary</h2><p>Your personal word bank. Saved only in this browser.</p></div></div>
+    <section class="notebook-hero">
+      <div class="notebook-stat"><span aria-hidden="true">♥</span><strong id="notebookSaved">0</strong><small>saved words</small></div>
+      <div class="notebook-stat"><span aria-hidden="true">✓</span><strong id="notebookMastered">0</strong><small>mastered</small></div>
+      <div class="notebook-stat"><span aria-hidden="true">↻</span><strong id="notebookReview">0</strong><small>to review</small></div>
+      <div class="notebook-actions">
+        <button id="reviewNotebook" class="primary-action">🧠 Revise my words</button>
+        <button id="exportNotebook">⇩ Export notebook</button>
+      </div>
+    </section>
+    <section class="panel notebook-filters">
+      <label>Find a saved word<input id="notebookQuery" type="search" placeholder="Search my vocabulary"></label>
+      <label>Status<select id="notebookStatus"><option value="all">All saved words</option><option value="review">To review</option><option value="mastered">Mastered</option></select></label>
+      <label>Chapter<select id="notebookChapter"><option value="">All chapters</option></select></label>
+      <button id="clearNotebook" class="danger-quiet">Clear notebook</button>
+    </section>
+    <p id="notebookCount" class="result-count"></p>
+    <section id="notebookResults"></section>
   </section>
 
   <section id="test" class="page">
-    <h2>Progress Test</h2>
-    <p>Untimed 10-question test.</p>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🏆</span><div><span class="eyebrow">Check yourself</span><h2>Progress Test</h2><p>Ten untimed questions. Nothing is sent or recorded online.</p></div></div>
     <section id="testBox"></section>
   </section>
 
   <section id="search" class="page">
-    <h2>Search Engine</h2>
-    <section class="panel">
-      <label>Search across all chapters<input id="searchInput" type="search"></label>
-      <p>Search English, French, definitions, examples and collocations.</p>
-      <p id="searchCount"></p>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🔎</span><div><span class="eyebrow">Find it fast</span><h2>Search Engine</h2><p>Search across all chapters and all vocabulary fields.</p></div></div>
+    <section class="panel search-panel">
+      <label>Search English, French, definitions, examples and collocations<input id="searchInput" type="search" placeholder="Start typing…"></label>
+      <p id="searchCount" class="result-count"></p>
     </section>
     <section id="searchResults"><p>Type at least 2 characters.</p></section>
   </section>
 </main>
 
+<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <footer>
   <p><strong>Speech Therapy English</strong> · Accessible learning platform.</p>
-  <p>No account required. No personal data is sent by this static site.</p>
+  <p>No account required. No personal data is sent by this static site. Vocabulary notebook and accessibility preferences are stored locally in your browser.</p>
 </footer>
 <script src="vocabulary.js"></script>
 <script src="app.js"></script>
