@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Accessible clinical English vocabulary learning platform for speech and language therapy students.">
   <meta name="theme-color" content="#1b5c8f">
-  <meta name="application-version" content="5.0">
+  <meta name="application-version" content="6.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v51.css">
+  <link rel="stylesheet" href="styles-v6.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -242,12 +242,34 @@
   </section>
 
   <section id="cases" class="page">
-    <div class="page-title"><span class="page-icon" aria-hidden="true">🩺</span><div><span class="eyebrow">Apply</span><h2>Clinical Cases</h2><p>Move from knowing a word to using it professionally.</p></div></div>
-    <section class="case-grid">
-      <article class="case-card"><span class="case-number">01</span><span class="case-tag">Neuro</span><h3>Post-stroke aphasia</h3><p>A patient understands simple instructions but struggles with word retrieval and semantic errors.</p><p><b>Your task:</b> Explain the case using three terms from Chapter 19.</p><button data-go="lexicon" class="case-action">Find useful terms →</button></article>
-      <article class="case-card"><span class="case-number">02</span><span class="case-tag">Voice</span><h3>Teacher with dysphonia</h3><p>A teacher reports hoarseness, vocal fatigue and poor voice projection.</p><p><b>Your task:</b> Suggest relevant vocabulary and strategies.</p><button data-go="lexicon" class="case-action">Find useful terms →</button></article>
-      <article class="case-card"><span class="case-number">03</span><span class="case-tag">AAC</span><h3>Progressive MND</h3><p>A patient wants to prepare for future communication needs.</p><p><b>Your task:</b> Use AAC, voice banking and message banking.</p><button data-go="lexicon" class="case-action">Find useful terms →</button></article>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🩺</span><div><span class="eyebrow">Apply</span><h2>Clinical Cases</h2><p>Use the vocabulary in realistic mini-scenarios — with as much or as little support as you want.</p></div></div>
+
+    <section class="case-lab-hero">
+      <div>
+        <span class="eyebrow">Clinical Case Lab</span>
+        <h3>From vocabulary to clinical reasoning.</h3>
+        <p>Choose a case, then work in <b>Guided</b>, <b>Clinical</b> or <b>Challenge</b> mode. No timer and no automatic judgement of your clinical writing.</p>
+      </div>
+      <div class="case-lab-actions">
+        <button id="randomCase" class="primary-action">🎲 Random case</button>
+        <button id="caseHowItWorks">? How it works</button>
+      </div>
     </section>
+
+    <section id="caseHelp" class="case-help" hidden>
+      <article><strong>🧭 Guided</strong><p>Choose useful terms from a mixed set, then compare your choices with the case vocabulary.</p></article>
+      <article><strong>🩺 Clinical</strong><p>Identify the vocabulary yourself before revealing the terms selected for this training case.</p></article>
+      <article><strong>🔥 Challenge</strong><p>Write a short professional summary, then use a keyword self-check and model answer — not an automatic clinical grade.</p></article>
+    </section>
+
+    <section class="panel case-browser-controls" aria-label="Clinical case filters">
+      <label>Area<select id="caseArea"><option value="all">All areas</option><option value="swallowing">Swallowing & feeding</option><option value="neuro">Neuro & communication</option><option value="voice">Voice</option></select></label>
+      <label>Difficulty<select id="caseDifficulty"><option value="guided">Guided</option><option value="clinical">Clinical</option><option value="challenge">Challenge</option></select></label>
+      <div class="case-browser-count"><strong id="caseCount">9</strong><span>cases available</span></div>
+    </section>
+
+    <section id="caseGrid" class="case-grid" aria-live="polite"></section>
+    <section id="caseWorkspace" class="case-workspace" hidden aria-live="polite"></section>
   </section>
 
   <section id="notebook" class="page">
@@ -297,7 +319,7 @@
     </div>
   </div>
 </footer>
-<script src="vocabulary-v51.js"></script>
-<script src="app-v51.js"></script>
+<script src="vocabulary-v6.js"></script>
+<script src="app-v6.js"></script>
 </body>
 </html>
