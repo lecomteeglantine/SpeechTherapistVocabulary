@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#1b5c8f">
   <meta name="application-version" content="6.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v6.css">
+  <link rel="stylesheet" href="styles-v7.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -41,7 +41,7 @@
       <button data-page="cases"><span aria-hidden="true">🩺</span> Cases</button>
       <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
       <button data-page="test"><span aria-hidden="true">🏆</span> Test</button>
-      <button data-page="search"><span aria-hidden="true">🔎</span> Search</button>
+      <button data-page="search"><span aria-hidden="true">🔎</span> Dictionary</button>
     </nav>
   </div>
 </header>
@@ -107,7 +107,7 @@
       </button>
       <button class="activity-card card-yellow" data-go="search">
         <span class="activity-icon" aria-hidden="true">🔎</span><span class="activity-kicker">FIND IT FAST</span>
-        <strong>Look up a term</strong><span>Search English, French, definitions and collocations.</span><span class="arrow">Search now →</span>
+        <strong>Look up a term</strong><span>Search English, French, definitions and collocations.</span><span class="arrow">Open dictionary →</span>
       </button>
     </section>
 
@@ -299,12 +299,38 @@
   </section>
 
   <section id="search" class="page">
-    <div class="page-title"><span class="page-icon" aria-hidden="true">🔎</span><div><span class="eyebrow">Find it fast</span><h2>Search Engine</h2><p>Search across all chapters and all vocabulary fields.</p></div></div>
-    <section class="panel search-panel">
-      <label>Search English, French, definitions, examples and collocations<input id="searchInput" type="search" placeholder="Start typing…"></label>
-      <p id="searchCount" class="result-count"></p>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🔎</span><div><span class="eyebrow">Clinical dictionary</span><h2>Dictionary</h2><p>Search in English or French, then explore definitions, examples, collocations and connected terms.</p></div></div>
+
+    <section class="panel dictionary-tools">
+      <div class="dictionary-search-row">
+        <label>Search the dictionary<input id="searchInput" type="search" autocomplete="off" placeholder="Try aspiration, voix, stroke…" aria-describedby="dictionarySearchHelp"></label>
+        <button id="randomDictionaryTerm" type="button">🎲 Random term</button>
+      </div>
+      <p id="dictionarySearchHelp" class="dictionary-help">English and French are both searchable. Simple spelling mistakes are tolerated.</p>
+      <div id="searchSuggestion" class="dictionary-suggestion" aria-live="polite" hidden></div>
+      <div class="dictionary-history-row" id="searchHistoryWrap" hidden>
+        <span><strong>Recent searches</strong></span>
+        <div id="searchHistory" class="dictionary-history"></div>
+        <button id="clearSearchHistory" class="tiny-button" type="button">Clear</button>
+      </div>
+      <p id="searchCount" class="result-count" aria-live="polite"></p>
     </section>
-    <section id="searchResults"><p>Type at least 2 characters.</p></section>
+
+    <section class="dictionary-layout">
+      <aside class="dictionary-results-panel" aria-label="Dictionary search results">
+        <div class="dictionary-results-heading"><h3>Matches</h3><span id="dictionaryMatchesHint">Start typing to search.</span></div>
+        <div id="searchResults" class="dictionary-results"><div class="dictionary-start"><span aria-hidden="true">⌨️</span><p>Type at least 2 characters, choose a recent search, or try a random term.</p></div></div>
+      </aside>
+      <section id="dictionaryEntry" class="dictionary-entry" aria-live="polite">
+        <div class="dictionary-welcome">
+          <div class="dictionary-welcome-icon" aria-hidden="true">📖</div>
+          <span class="eyebrow">Explore the vocabulary</span>
+          <h3>One term, all the useful context.</h3>
+          <p>Open a result to see pronunciation, French, levelled definitions, clinical examples, collocations and related vocabulary.</p>
+          <button id="dictionaryWelcomeRandom" type="button">🎲 Show me a random term</button>
+        </div>
+      </section>
+    </section>
   </section>
 </main>
 
@@ -314,12 +340,12 @@
     <p class="footer-credit"><strong>Designed and created by Eglantine Lecomte and Amaury Lemoine, with the assistance of ChatGPT.</strong></p>
     <div class="privacy-note" aria-label="Privacy and GDPR information">
       <p><strong>Privacy &amp; GDPR</strong> · This learning tool is designed according to data-minimisation principles. No account is required, and the site itself does not collect, transmit or store personal data on a remote server.</p>
-      <p>Saved vocabulary, learning progress, flashcard results and accessibility preferences are stored only on this device in your browser’s local storage. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
+      <p>Saved vocabulary, learning progress, flashcard results, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
       <p class="hosting-note">The website is hosted on GitHub Pages. Standard technical connection data may therefore be processed by GitHub as hosting provider under its own privacy policy.</p>
     </div>
   </div>
 </footer>
-<script src="vocabulary-v6.js"></script>
-<script src="app-v6.js"></script>
+<script src="vocabulary-v7.js"></script>
+<script src="app-v7.js"></script>
 </body>
 </html>
