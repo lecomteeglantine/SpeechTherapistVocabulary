@@ -1,7 +1,7 @@
-const CACHE_NAME='speech-therapy-english-v11-20260825';
+const CACHE_NAME='speech-therapy-english-v12-20260825';
 const APP_SHELL=[
-  './','./index.html','./styles-v11.css','./app-v11.js','./vocabulary-v11.js','./manifest.webmanifest',
-  './communication-v11.js','./offline.html','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./apple-touch-icon.png'
+  './','./index.html','./styles-v12.css','./app-v12.js','./vocabulary-v12.js','./manifest.webmanifest',
+  './communication-v12.js','./pronunciation-v12.js','./offline.html','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./apple-touch-icon.png'
 ];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(APP_SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE_NAME).map(key=>caches.delete(key)))).then(()=>self.clients.claim()))});

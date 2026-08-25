@@ -11,9 +11,9 @@
   <meta name="apple-mobile-web-app-title" content="Speech Therapy English">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <meta name="application-version" content="10.0">
+  <meta name="application-version" content="12.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v11.css">
+  <link rel="stylesheet" href="styles-v12.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -50,6 +50,7 @@
       <button data-page="practice"><span aria-hidden="true">⚡</span> Practice</button>
       <button data-page="cases"><span aria-hidden="true">🩺</span> Cases</button>
       <button data-page="communication"><span aria-hidden="true">💬</span> Communication</button>
+      <button data-page="pronunciation"><span aria-hidden="true">🎧</span> Pronunciation</button>
       <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
       <button data-page="progress"><span aria-hidden="true">📈</span> My Progress</button>
       <button data-page="test"><span aria-hidden="true">📊</span> Check-up</button>
@@ -135,6 +136,10 @@
       <button class="activity-card card-indigo" data-go="communication">
         <span class="activity-icon" aria-hidden="true">💬</span><span class="activity-kicker">COMMUNICATE</span>
         <strong>Use it professionally</strong><span>Explain, hand over, ask, recommend and write in clinical English.</span><span class="arrow">Open the lab →</span>
+      </button>
+      <button class="activity-card card-aqua" data-go="pronunciation">
+        <span class="activity-icon" aria-hidden="true">🎧</span><span class="activity-kicker">SAY IT</span>
+        <strong>Pronunciation Lab</strong><span>Stress, syllables, tricky sounds and a quick clinical-word workout.</span><span class="arrow">Train my pronunciation →</span>
       </button>
       <button class="activity-card card-pink" data-go="notebook">
         <span class="activity-icon" aria-hidden="true">♥</span><span class="activity-kicker">MAKE IT YOURS</span>
@@ -323,6 +328,47 @@
     <section id="communicationGrid" class="comm-grid" aria-live="polite"></section><section id="communicationWorkspace" class="comm-workspace" hidden aria-live="polite"></section>
   </section>
 
+  <section id="pronunciation" class="page">
+    <div class="page-title"><span class="page-icon" aria-hidden="true">🎧</span><div><span class="eyebrow">Pronunciation Lab</span><h2>Hear it. Chunk it. Say it.</h2><p>Work on the pronunciation patterns that matter in clinical English — without pretending that software can grade your accent.</p></div></div>
+
+    <section class="pron-hero">
+      <div class="pron-hero-copy">
+        <span class="eyebrow">Clinical pronunciation, not perfection</span>
+        <h3>Make difficult words easier to say.</h3>
+        <p>Listen, spot the stressed syllable, break long terms into manageable chunks and practise useful clinical phrases. British English is used for speech synthesis when your device provides it.</p>
+        <div class="pron-hero-actions"><button id="startPronQuick" class="primary-action">🎧 Start a 5-word workout</button><button id="randomPronWord">🎲 Random tricky word</button></div>
+      </div>
+      <aside class="pron-hero-side">
+        <div><strong id="pronWordsRated">0</strong><span>words rated</span></div>
+        <div><strong id="pronReviewCount">0</strong><span>to revisit</span></div>
+        <p><span aria-hidden="true">🔐</span> Your ratings stay in this browser. Microphone recordings, if you make one, are temporary and are not uploaded or saved by the site.</p>
+      </aside>
+    </section>
+
+    <section class="pron-module-grid" aria-label="Pronunciation focus areas">
+      <button class="pron-module-card" data-pron-module="stress"><span>🎯</span><strong>Word stress</strong><small>Find the syllable that carries the beat.</small></button>
+      <button class="pron-module-card" data-pron-module="syllables"><span>🧩</span><strong>Syllable builder</strong><small>Break long clinical words into manageable pieces.</small></button>
+      <button class="pron-module-card" data-pron-module="sounds"><span>👄</span><strong>Tricky sounds</strong><small>/θ/, /ð/, /ɪ/–/iː/, /æ/–/ʌ/ in clinical phrases.</small></button>
+      <button class="pron-module-card" data-pron-module="ed"><span>↘</span><strong>-ed endings</strong><small>/t/, /d/ or /ɪd/ in clinical verbs.</small></button>
+      <button class="pron-module-card" data-pron-module="s"><span>〰</span><strong>-s / -es endings</strong><small>/s/, /z/ or /ɪz/ in useful clinical words.</small></button>
+      <button class="pron-module-card" data-pron-module="chunks"><span>🗣️</span><strong>Clinical chunks</strong><small>Stop reading word by word; speak in meaningful groups.</small></button>
+    </section>
+
+    <section id="pronModuleWorkspace" class="pron-module-workspace" aria-live="polite"></section>
+
+    <section class="pron-workout-shell" aria-labelledby="pronWorkoutTitle">
+      <div class="pron-workout-heading"><div><span class="eyebrow">Personal workout</span><h3 id="pronWorkoutTitle">Build a short pronunciation session</h3><p>Rate words yourself: <b>Easy</b>, <b>Tricky</b> or <b>Again</b>. Difficult words can come back in a later session.</p></div><span class="pron-no-score">No accent score</span></div>
+      <div class="pron-toolbar">
+        <label>Words from<select id="pronSource"><option value="all">Curated clinical pronunciation bank</option><option value="18">Chapter 18 · Dysphagia</option><option value="19">Chapter 19 · Neuro & communication</option><option value="20">Chapter 20 · Voice</option><option value="saved">♥ My Vocabulary</option><option value="review">↻ Pronunciation to review</option></select></label>
+        <label>Session size<select id="pronSize"><option value="5" selected>5 words</option><option value="10">10 words</option><option value="15">15 words</option></select></label>
+        <button id="startPronWorkout" class="primary-action">▶ Start workout</button>
+      </div>
+      <div class="pron-session-bar"><div><strong id="pronProgress">Ready</strong><span id="pronProgressNote">Choose a source and start when you want.</span></div><div class="pron-session-pills"><span><b id="pronEasyCount">0</b> Easy</span><span><b id="pronTrickyCount">0</b> Tricky</span><span><b id="pronAgainCount">0</b> Again</span></div></div>
+      <div class="pron-progress-track" aria-hidden="true"><div id="pronProgressBar"></div></div>
+      <section id="pronWorkout" class="pron-workout" aria-live="polite"><div class="pron-empty"><span>🎧</span><h4>Ready when you are.</h4><p>Start with five words or explore one of the focus areas above.</p></div></section>
+    </section>
+  </section>
+
   <section id="notebook" class="page">
     <div class="page-title"><span class="page-icon" aria-hidden="true">♥</span><div><span class="eyebrow">Make it yours</span><h2>My Vocabulary</h2><p>Your personal word bank. Saved only in this browser.</p></div></div>
     <section class="notebook-hero">
@@ -351,6 +397,7 @@
       <article><span class="progress-metric-icon">♥</span><strong id="progressSaved">0</strong><small>saved words</small></article>
       <article><span class="progress-metric-icon">✓</span><strong id="progressMastered">0</strong><small>mastered</small></article>
       <article><span class="progress-metric-icon">🧠</span><strong id="progressFlashSeen">0</strong><small>flashcard terms seen</small></article>
+      <article><span class="progress-metric-icon">🎧</span><strong id="progressPronunciation">0</strong><small>pronunciation terms rated</small></article>
       <article><span class="progress-metric-icon">⚡</span><strong id="progressPracticeAccuracy">—</strong><small>recent practice accuracy</small></article>
       <article><span class="progress-metric-icon">🩺</span><strong id="progressCases">0/9</strong><small>clinical cases explored</small></article>
       <article><span class="progress-metric-icon">📊</span><strong id="progressDiagnostic">—</strong><small>latest check-up</small></article>
@@ -505,13 +552,14 @@
     <p class="footer-credit"><strong>Designed and created by Eglantine Lecomte and Amaury Lemoine, with the assistance of ChatGPT.</strong></p>
     <div class="privacy-note" aria-label="Privacy and GDPR information">
       <p><strong>Privacy &amp; GDPR</strong> · This learning tool is designed according to data-minimisation principles. No account is required, and the site itself does not collect, transmit or store personal data on a remote server.</p>
-      <p>Saved vocabulary, learning progress, flashcard results, recent practice summaries, progress-check history, 5-minute-session history, recent dictionary searches, Clinical Communication progress and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
+      <p>Saved vocabulary, learning progress, flashcard results, recent practice summaries, progress-check history, 5-minute-session history, recent dictionary searches, Clinical Communication progress, Pronunciation Lab ratings and accessibility preferences are stored only on this device in your browser’s local storage. Pronunciation recordings made with the optional microphone tool are temporary playback recordings: the learning tool does not upload them or save them to local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
       <p class="hosting-note">The website is hosted on GitHub Pages. Standard technical connection data may therefore be processed by GitHub as hosting provider under its own privacy policy.</p>
     </div>
   </div>
 </footer>
-<script src="vocabulary-v11.js"></script>
-<script src="app-v11.js"></script>
-<script src="communication-v11.js"></script>
+<script src="vocabulary-v12.js"></script>
+<script src="app-v12.js"></script>
+<script src="communication-v12.js"></script>
+<script src="pronunciation-v12.js"></script>
 </body>
 </html>
