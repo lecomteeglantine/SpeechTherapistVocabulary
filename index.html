@@ -5,9 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Accessible clinical English vocabulary learning platform for speech and language therapy students.">
   <meta name="theme-color" content="#1b5c8f">
-  <meta name="application-version" content="6.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Speech Therapy English">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="application-version" content="8.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v7.css">
+  <link rel="stylesheet" href="styles-v8.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -21,6 +27,9 @@
           <p class="tagline">Clinical English for speech and language therapy students</p>
         </div>
       </div>
+      <div class="header-tools">
+        <span id="connectionStatus" class="connection-status is-online" role="status" aria-live="polite"><span aria-hidden="true">●</span> Online</span>
+        <button id="headerInstallApp" class="header-install" type="button">📲 Install app</button>
       <details class="a11y-shell">
         <summary>⚙ Accessibility</summary>
         <div class="a11y" aria-label="Accessibility settings">
@@ -32,6 +41,7 @@
           <button id="motion">Reduce motion</button>
         </div>
       </details>
+      </div>
     </div>
     <nav aria-label="Main navigation">
       <button data-page="home" class="active" aria-current="page"><span aria-hidden="true">⌂</span> Home</button>
@@ -72,6 +82,24 @@
       <div><span class="dash-icon" aria-hidden="true">✓</span><strong id="homeMastered">0</strong><span>mastered</span></div>
       <div><span class="dash-icon" aria-hidden="true">↻</span><strong id="homeReview">0</strong><span>to review</span></div>
       <button class="dashboard-link" data-go="notebook">Open My Vocabulary →</button>
+    </section>
+
+    <section id="installCard" class="install-card" aria-labelledby="installTitle">
+      <div class="install-card-icon" aria-hidden="true">📲</div>
+      <div class="install-card-copy">
+        <span class="eyebrow">Pocket-sized clinical English</span>
+        <h3 id="installTitle">Take Speech Therapy English with you.</h3>
+        <p>Install the app on your phone, tablet or computer and keep the lexicon, dictionary, flashcards, practice and clinical cases available even when you are offline.</p>
+        <small>🔊 Pronunciation offline depends on the English voices installed on your device.</small>
+      </div>
+      <div class="install-card-actions">
+        <button id="installApp" class="primary-action" type="button">📲 Install this app</button>
+        <button id="installHelp" class="ghost-action" type="button">How to install</button>
+      </div>
+      <div id="installHelpPanel" class="install-help-panel" hidden>
+        <p><strong>On Android / Chrome or desktop Chrome / Edge:</strong> use <em>Install this app</em> when the install prompt is available. If it is not shown, open your browser menu and look for the install-app option.</p>
+        <p><strong>On iPhone / iPad:</strong> open the Share menu in Safari and choose <em>Add to Home Screen</em>.</p>
+      </div>
     </section>
 
     <section id="quickWords" class="quick-words" hidden aria-live="polite"></section>
@@ -334,18 +362,24 @@
   </section>
 </main>
 
+<div id="updateBanner" class="update-banner" hidden role="status">
+  <span>✨ A new version is ready.</span>
+  <button id="reloadUpdate" type="button">Reload to update</button>
+  <button id="dismissUpdate" class="tiny-button" type="button" aria-label="Dismiss update message">Not now</button>
+</div>
+
 <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 <footer class="site-footer">
   <div class="footer-inner">
     <p class="footer-credit"><strong>Designed and created by Eglantine Lecomte and Amaury Lemoine, with the assistance of ChatGPT.</strong></p>
     <div class="privacy-note" aria-label="Privacy and GDPR information">
       <p><strong>Privacy &amp; GDPR</strong> · This learning tool is designed according to data-minimisation principles. No account is required, and the site itself does not collect, transmit or store personal data on a remote server.</p>
-      <p>Saved vocabulary, learning progress, flashcard results, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
+      <p>Saved vocabulary, learning progress, flashcard results, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
       <p class="hosting-note">The website is hosted on GitHub Pages. Standard technical connection data may therefore be processed by GitHub as hosting provider under its own privacy policy.</p>
     </div>
   </div>
 </footer>
-<script src="vocabulary-v7.js"></script>
-<script src="app-v7.js"></script>
+<script src="vocabulary-v8.js"></script>
+<script src="app-v8.js"></script>
 </body>
 </html>
