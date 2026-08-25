@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta name="application-version" content="8.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v8.css">
+  <link rel="stylesheet" href="styles-v9.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -50,7 +50,7 @@
       <button data-page="practice"><span aria-hidden="true">⚡</span> Practice</button>
       <button data-page="cases"><span aria-hidden="true">🩺</span> Cases</button>
       <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
-      <button data-page="test"><span aria-hidden="true">🏆</span> Test</button>
+      <button data-page="test"><span aria-hidden="true">📊</span> Progress</button>
       <button data-page="search"><span aria-hidden="true">🔎</span> Dictionary</button>
     </nav>
   </div>
@@ -322,8 +322,54 @@
   </section>
 
   <section id="test" class="page">
-    <div class="page-title"><span class="page-icon" aria-hidden="true">🏆</span><div><span class="eyebrow">Check yourself</span><h2>Progress Test</h2><p>Ten untimed questions. Nothing is sent or recorded online.</p></div></div>
-    <section id="testBox"></section>
+    <div class="page-title"><span class="page-icon" aria-hidden="true">📊</span><div><span class="eyebrow">Diagnostic &amp; progress check</span><h2>Find out what to work on next.</h2><p>24 untimed questions across Dysphagia, Neurogenic Communication and Voice Disorders. Your results stay on this device.</p></div></div>
+
+    <section class="diagnostic-intro" id="diagnosticIntro">
+      <div class="diagnostic-hero">
+        <div>
+          <span class="eyebrow">One balanced check · three clinical areas</span>
+          <h3>Not just a score — a revision plan.</h3>
+          <p>The questions mix translation, definitions, clinical context, collocations and short clinical notes. At the end, the site identifies your strongest area, your priority area and the exact terms worth revisiting.</p>
+          <div class="diagnostic-actions">
+            <label>Language level focus
+              <select id="diagnosticLevel">
+                <option value="core">Core · A2–B1</option>
+                <option value="clinical" selected>Clinical · B1–B2</option>
+                <option value="advanced">Advanced · B2–C1</option>
+              </select>
+            </label>
+            <button id="startDiagnostic" class="primary-action">▶ Start my progress check</button>
+          </div>
+          <p class="diagnostic-note">No timer. No account. No results are sent anywhere.</p>
+        </div>
+        <div class="diagnostic-orbit" aria-hidden="true">
+          <div class="orbit-score"><strong>24</strong><span>questions</span></div>
+          <span class="orbit-pill d18">Dysphagia</span>
+          <span class="orbit-pill d19">Neuro</span>
+          <span class="orbit-pill d20">Voice</span>
+        </div>
+      </div>
+
+      <div class="diagnostic-domain-grid">
+        <article><span class="domain-icon">🥤</span><div><strong>Dysphagia</strong><small>Chapter 18 · 8 questions</small></div></article>
+        <article><span class="domain-icon">🧠</span><div><strong>Neurogenic Communication</strong><small>Chapter 19 · 8 questions</small></div></article>
+        <article><span class="domain-icon">🎙️</span><div><strong>Voice Disorders</strong><small>Chapter 20 · 8 questions</small></div></article>
+      </div>
+
+      <section class="diagnostic-history-card">
+        <div class="diagnostic-history-head"><div><span class="eyebrow">On this device</span><h3>Previous attempts</h3></div><button id="clearDiagnosticHistory" class="tiny-button" type="button">Clear</button></div>
+        <div id="diagnosticHistory" class="diagnostic-history"><p class="muted-copy">No completed progress check yet.</p></div>
+      </section>
+    </section>
+
+    <section id="diagnosticSession" class="diagnostic-session" hidden>
+      <div class="diagnostic-session-bar">
+        <div><span id="diagnosticQuestionCount">Question 1 / 24</span><strong id="diagnosticDomainMini">Dysphagia</strong></div>
+        <div class="diagnostic-running"><span><b id="diagnosticCorrect">0</b> correct</span><span><b id="diagnosticMissed">0</b> missed</span></div>
+      </div>
+      <div class="diagnostic-progress-track" aria-hidden="true"><div id="diagnosticProgressBar"></div></div>
+      <section id="testBox" aria-live="polite"></section>
+    </section>
   </section>
 
   <section id="search" class="page">
@@ -374,12 +420,12 @@
     <p class="footer-credit"><strong>Designed and created by Eglantine Lecomte and Amaury Lemoine, with the assistance of ChatGPT.</strong></p>
     <div class="privacy-note" aria-label="Privacy and GDPR information">
       <p><strong>Privacy &amp; GDPR</strong> · This learning tool is designed according to data-minimisation principles. No account is required, and the site itself does not collect, transmit or store personal data on a remote server.</p>
-      <p>Saved vocabulary, learning progress, flashcard results, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
+      <p>Saved vocabulary, learning progress, flashcard results, progress-check history, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
       <p class="hosting-note">The website is hosted on GitHub Pages. Standard technical connection data may therefore be processed by GitHub as hosting provider under its own privacy policy.</p>
     </div>
   </div>
 </footer>
-<script src="vocabulary-v8.js"></script>
-<script src="app-v8.js"></script>
+<script src="vocabulary-v9.js"></script>
+<script src="app-v9.js"></script>
 </body>
 </html>
