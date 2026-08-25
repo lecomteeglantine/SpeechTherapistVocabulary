@@ -11,9 +11,9 @@
   <meta name="apple-mobile-web-app-title" content="Speech Therapy English">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <meta name="application-version" content="8.0">
+  <meta name="application-version" content="10.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v9.css">
+  <link rel="stylesheet" href="styles-v10.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -50,7 +50,8 @@
       <button data-page="practice"><span aria-hidden="true">⚡</span> Practice</button>
       <button data-page="cases"><span aria-hidden="true">🩺</span> Cases</button>
       <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
-      <button data-page="test"><span aria-hidden="true">📊</span> Progress</button>
+      <button data-page="progress"><span aria-hidden="true">📈</span> My Progress</button>
+      <button data-page="test"><span aria-hidden="true">📊</span> Check-up</button>
       <button data-page="search"><span aria-hidden="true">🔎</span> Dictionary</button>
     </nav>
   </div>
@@ -68,6 +69,7 @@
         <div class="hero-actions">
           <button class="primary-action" id="learnFive">✨ Give me 5 words</button>
           <button class="secondary-action" id="quickRevision">⚡ Quick revision</button>
+          <button class="ghost-action" id="fiveMinuteBoost">⏱ I have 5 minutes</button>
           <button class="ghost-action" id="surpriseMe">🎲 Surprise me</button>
         </div>
       </div>
@@ -132,6 +134,10 @@
       <button class="activity-card card-pink" data-go="notebook">
         <span class="activity-icon" aria-hidden="true">♥</span><span class="activity-kicker">MAKE IT YOURS</span>
         <strong>My Vocabulary</strong><span>Build a personal word bank and mark terms as mastered.</span><span class="arrow">Open notebook →</span>
+      </button>
+      <button class="activity-card card-teal" data-go="progress">
+        <span class="activity-icon" aria-hidden="true">📈</span><span class="activity-kicker">YOUR NEXT MOVE</span>
+        <strong>My Progress</strong><span>See your learning signals and get a focused next-step plan.</span><span class="arrow">Show my plan →</span>
       </button>
       <button class="activity-card card-yellow" data-go="search">
         <span class="activity-icon" aria-hidden="true">🔎</span><span class="activity-kicker">FIND IT FAST</span>
@@ -321,6 +327,68 @@
     <section id="notebookResults"></section>
   </section>
 
+  <section id="progress" class="page">
+    <div class="page-title"><span class="page-icon" aria-hidden="true">📈</span><div><span class="eyebrow">My Progress</span><h2>Useful signals, not guilt.</h2><p>See what you have worked on and get a practical next step. Everything here is calculated from activity stored only in this browser.</p></div></div>
+
+    <section class="progress-overview" aria-label="Learning overview">
+      <article><span class="progress-metric-icon">♥</span><strong id="progressSaved">0</strong><small>saved words</small></article>
+      <article><span class="progress-metric-icon">✓</span><strong id="progressMastered">0</strong><small>mastered</small></article>
+      <article><span class="progress-metric-icon">🧠</span><strong id="progressFlashSeen">0</strong><small>flashcard terms seen</small></article>
+      <article><span class="progress-metric-icon">⚡</span><strong id="progressPracticeAccuracy">—</strong><small>recent practice accuracy</small></article>
+      <article><span class="progress-metric-icon">🩺</span><strong id="progressCases">0/9</strong><small>clinical cases explored</small></article>
+      <article><span class="progress-metric-icon">📊</span><strong id="progressDiagnostic">—</strong><small>latest check-up</small></article>
+    </section>
+
+    <section class="guided-plan" aria-labelledby="guidedPlanTitle">
+      <div class="guided-plan-main">
+        <span class="eyebrow">🎯 What should I work on next?</span>
+        <h3 id="guidedPlanTitle">Building your recommendation…</h3>
+        <p id="guidedPlanReason">Your plan uses your local learning activity. If there is not enough activity yet, the site will suggest a balanced starting point.</p>
+        <div id="guidedPlanSteps" class="guided-plan-steps"></div>
+        <div class="guided-plan-actions">
+          <button id="startGuidedSession" class="primary-action">▶ Start my 5-minute session</button>
+          <button id="openRecommendedPractice">⚡ Open recommended practice</button>
+          <button id="openRecommendedCases">🩺 Open a related case</button>
+        </div>
+      </div>
+      <aside class="guided-plan-side">
+        <span class="eyebrow">No streaks. No judgement.</span>
+        <div class="priority-orb" id="priorityOrb"><span>Today</span><strong>Mixed</strong></div>
+        <p>A recommendation is only a revision shortcut. It is not a judgement of clinical competence.</p>
+      </aside>
+    </section>
+
+    <div class="section-heading"><div><span class="eyebrow">Three clinical areas</span><h3>Your learning signals</h3></div><p>These combine recent check-ups, practice, flashcards, saved words and case exploration.</p></div>
+    <section id="progressDomains" class="progress-domain-grid" aria-live="polite"></section>
+
+    <section class="progress-lower-grid">
+      <article class="progress-card">
+        <div class="progress-card-head"><div><span class="eyebrow">Recent activity</span><h3>What you have been doing</h3></div><span aria-hidden="true">🗂️</span></div>
+        <div id="progressRecent" class="progress-recent"></div>
+      </article>
+      <article class="progress-card five-minute-card">
+        <div class="progress-card-head"><div><span class="eyebrow">Short on time?</span><h3>Five useful minutes.</h3></div><span aria-hidden="true">⏱</span></div>
+        <p>Two flashcards, two quick questions and one clinical challenge — automatically focused on the area that looks most useful today.</p>
+        <button id="progressFiveMinutes" class="primary-action">⏱ Start the 5-minute boost</button>
+        <small id="sprintHistoryNote">No 5-minute boost completed yet.</small>
+      </article>
+    </section>
+
+    <p class="progress-data-note">Progress data is stored only in this browser. Practice tracking starts with V10; older practice sessions were not previously stored.</p>
+  </section>
+
+  <section id="sprint" class="page">
+    <div class="page-title"><span class="page-icon" aria-hidden="true">⏱</span><div><span class="eyebrow">5-minute boost</span><h2>Five small things. Then you’re done.</h2><p>2 flashcards · 2 practice questions · 1 clinical challenge. No timer — “five minutes” is a format, not a deadline.</p></div></div>
+    <section class="sprint-shell">
+      <div class="sprint-topbar">
+        <div><span id="sprintStepLabel">Step 1 of 5</span><strong id="sprintDomainLabel">Mixed vocabulary</strong></div>
+        <button id="exitSprint" class="ghost-action">Exit boost</button>
+      </div>
+      <div class="sprint-track" aria-hidden="true"><span id="sprintTrack"></span></div>
+      <section id="sprintBox" class="sprint-box" aria-live="polite"></section>
+    </section>
+  </section>
+
   <section id="test" class="page">
     <div class="page-title"><span class="page-icon" aria-hidden="true">📊</span><div><span class="eyebrow">Diagnostic &amp; progress check</span><h2>Find out what to work on next.</h2><p>24 untimed questions across Dysphagia, Neurogenic Communication and Voice Disorders. Your results stay on this device.</p></div></div>
 
@@ -420,12 +488,12 @@
     <p class="footer-credit"><strong>Designed and created by Eglantine Lecomte and Amaury Lemoine, with the assistance of ChatGPT.</strong></p>
     <div class="privacy-note" aria-label="Privacy and GDPR information">
       <p><strong>Privacy &amp; GDPR</strong> · This learning tool is designed according to data-minimisation principles. No account is required, and the site itself does not collect, transmit or store personal data on a remote server.</p>
-      <p>Saved vocabulary, learning progress, flashcard results, progress-check history, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
+      <p>Saved vocabulary, learning progress, flashcard results, recent practice summaries, progress-check history, 5-minute-session history, recent dictionary searches and accessibility preferences are stored only on this device in your browser’s local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
       <p class="hosting-note">The website is hosted on GitHub Pages. Standard technical connection data may therefore be processed by GitHub as hosting provider under its own privacy policy.</p>
     </div>
   </div>
 </footer>
-<script src="vocabulary-v9.js"></script>
-<script src="app-v9.js"></script>
+<script src="vocabulary-v10.js"></script>
+<script src="app-v10.js"></script>
 </body>
 </html>
