@@ -11,9 +11,9 @@
   <meta name="apple-mobile-web-app-title" content="Speech Therapy English">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <meta name="application-version" content="12.0">
+  <meta name="application-version" content="13.0">
   <title>Speech Therapy English – Accessible Learning Platform</title>
-  <link rel="stylesheet" href="styles-v12.css">
+  <link rel="stylesheet" href="styles-v13.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -43,18 +43,42 @@
       </details>
       </div>
     </div>
-    <nav aria-label="Main navigation">
-      <button data-page="home" class="active" aria-current="page"><span aria-hidden="true">⌂</span> Home</button>
-      <button data-page="lexicon"><span aria-hidden="true">📚</span> Lexicon</button>
-      <button data-page="flashcards"><span aria-hidden="true">🧠</span> Flashcards</button>
-      <button data-page="practice"><span aria-hidden="true">⚡</span> Practice</button>
-      <button data-page="cases"><span aria-hidden="true">🩺</span> Cases</button>
-      <button data-page="communication"><span aria-hidden="true">💬</span> Communication</button>
-      <button data-page="pronunciation"><span aria-hidden="true">🎧</span> Pronunciation</button>
-      <button data-page="notebook"><span aria-hidden="true">♥</span> My Vocabulary <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span></button>
-      <button data-page="progress"><span aria-hidden="true">📈</span> My Progress</button>
-      <button data-page="test"><span aria-hidden="true">📊</span> Check-up</button>
-      <button data-page="search"><span aria-hidden="true">🔎</span> Dictionary</button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <button data-page="home" class="active home-nav" aria-current="page"><span aria-hidden="true">⌂</span> Home</button>
+
+      <details class="nav-menu-group" data-nav-pages="lexicon,search,pronunciation">
+        <summary><span aria-hidden="true">📚</span> Learn <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout">
+          <button data-page="lexicon"><span aria-hidden="true">📚</span><span><strong>Lexicon</strong><small>Browse the vocabulary</small></span></button>
+          <button data-page="search"><span aria-hidden="true">🔎</span><span><strong>Dictionary</strong><small>Look up a term fast</small></span></button>
+          <button data-page="pronunciation"><span aria-hidden="true">🎧</span><span><strong>Pronunciation</strong><small>Stress, sounds and workouts</small></span></button>
+        </div>
+      </details>
+
+      <details class="nav-menu-group" data-nav-pages="flashcards,practice,test">
+        <summary><span aria-hidden="true">⚡</span> Practise <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout">
+          <button data-page="flashcards"><span aria-hidden="true">🧠</span><span><strong>Flashcards</strong><small>Revise and rate recall</small></span></button>
+          <button data-page="practice"><span aria-hidden="true">⚡</span><span><strong>Practice</strong><small>Six quick game modes</small></span></button>
+          <button data-page="test"><span aria-hidden="true">📊</span><span><strong>Check-up</strong><small>24-question progress check</small></span></button>
+        </div>
+      </details>
+
+      <details class="nav-menu-group" data-nav-pages="cases,communication">
+        <summary><span aria-hidden="true">🩺</span> Clinical <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout">
+          <button data-page="cases"><span aria-hidden="true">🩺</span><span><strong>Clinical Cases</strong><small>Apply vocabulary to patients</small></span></button>
+          <button data-page="communication"><span aria-hidden="true">💬</span><span><strong>Communication Lab</strong><small>Explain, hand over and write</small></span></button>
+        </div>
+      </details>
+
+      <details class="nav-menu-group" data-nav-pages="notebook,progress">
+        <summary><span aria-hidden="true">♥</span> My Learning <span id="navSavedCount" class="nav-count" aria-label="saved words count">0</span> <span class="nav-chevron" aria-hidden="true">⌄</span></summary>
+        <div class="nav-flyout nav-flyout-right">
+          <button data-page="notebook"><span aria-hidden="true">♥</span><span><strong>My Vocabulary</strong><small>Saved and mastered words</small></span></button>
+          <button data-page="progress"><span aria-hidden="true">📈</span><span><strong>My Progress</strong><small>Your signals and next step</small></span></button>
+        </div>
+      </details>
     </nav>
   </div>
 </header>
@@ -88,71 +112,84 @@
       <button class="dashboard-link" data-go="notebook">Open My Vocabulary →</button>
     </section>
 
-    <section id="installCard" class="install-card" aria-labelledby="installTitle">
-      <div class="install-card-icon" aria-hidden="true">📲</div>
-      <div class="install-card-copy">
-        <span class="eyebrow">Pocket-sized clinical English</span>
-        <h3 id="installTitle">Take Speech Therapy English with you.</h3>
-        <p>Install the app on your phone, tablet or computer and keep the lexicon, dictionary, flashcards, practice and clinical cases available even when you are offline.</p>
-        <small>🔊 Pronunciation offline depends on the English voices installed on your device.</small>
+    <section class="learning-launchpad" aria-label="Start or continue learning">
+      <article class="launch-card start-card">
+        <div class="launch-icon" aria-hidden="true">🚀</div>
+        <div>
+          <span class="eyebrow">Start here</span>
+          <h3>New to the site? Keep it simple.</h3>
+          <p>Meet five useful core terms, then try a five-minute guided tour. You can explore everything else later.</p>
+          <div class="launch-actions">
+            <button id="startHereWords" class="primary-action">Meet 5 core words</button>
+            <button id="startHereTour">⏱ Take the 5-minute tour</button>
+          </div>
+        </div>
+      </article>
+      <article class="launch-card continue-card" id="continueLearningCard">
+        <div class="launch-icon" aria-hidden="true">↪</div>
+        <div>
+          <span class="eyebrow">Continue learning</span>
+          <h3 id="continueLearningTitle">Pick up where you left off.</h3>
+          <p id="continueLearningText">Your most useful next step will appear here.</p>
+          <div class="launch-actions">
+            <button id="continueLearningAction" class="primary-action">Continue →</button>
+            <button data-go="progress">📈 See my learning plan</button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="installCard" class="install-strip" aria-labelledby="installTitle">
+      <div class="install-strip-main">
+        <span class="install-card-icon" aria-hidden="true">📲</span>
+        <div>
+          <span class="eyebrow">Use it anywhere</span>
+          <h3 id="installTitle">Install it once. Keep the core tools offline.</h3>
+          <p>Lexicon, dictionary, flashcards, practice, cases and learning tools can stay available on this device.</p>
+        </div>
       </div>
       <div class="install-card-actions">
         <button id="installApp" class="primary-action" type="button">📲 Install this app</button>
         <button id="installHelp" class="ghost-action" type="button">How to install</button>
       </div>
       <div id="installHelpPanel" class="install-help-panel" hidden>
-        <p><strong>On Android / Chrome or desktop Chrome / Edge:</strong> use <em>Install this app</em> when the install prompt is available. If it is not shown, open your browser menu and look for the install-app option.</p>
-        <p><strong>On iPhone / iPad:</strong> open the Share menu in Safari and choose <em>Add to Home Screen</em>.</p>
+        <p><strong>Android / Chrome or desktop Chrome / Edge:</strong> use <em>Install this app</em> when the install prompt is available. If it is not shown, open your browser menu and look for the install-app option.</p>
+        <p><strong>iPhone / iPad:</strong> open the Share menu in Safari and choose <em>Add to Home Screen</em>.</p>
+        <p><small>🔊 Pronunciation offline depends on the English voices installed on your device.</small></p>
       </div>
     </section>
 
     <section id="quickWords" class="quick-words" hidden aria-live="polite"></section>
 
-    <div class="section-heading punchy-heading">
+    <div class="section-heading punchy-heading path-heading">
       <div>
-        <span class="eyebrow">Pick your mode</span>
-        <h2>What are you up for today?</h2>
+        <span class="eyebrow">Four clear paths</span>
+        <h2>Choose what you need.</h2>
       </div>
-      <p>No timers. No streak guilt. Just useful practice.</p>
+      <p>Everything is still here — just with less menu noise.</p>
     </div>
 
-    <section class="activity-grid" aria-label="Learning activities">
-      <button class="activity-card card-blue" data-go="lexicon">
-        <span class="activity-icon" aria-hidden="true">📚</span><span class="activity-kicker">EXPLORE</span>
-        <strong>Learn vocabulary</strong><span>Browse by chapter, topic and CEFR level.</span><span class="arrow">Let’s go →</span>
-      </button>
-      <button class="activity-card card-purple" data-go="flashcards">
-        <span class="activity-icon" aria-hidden="true">🧠</span><span class="activity-kicker">REVISE</span>
-        <strong>Flip some cards</strong><span>Listen, reveal, shuffle — including your saved words.</span><span class="arrow">Start flipping →</span>
-      </button>
-      <button class="activity-card card-coral" data-go="practice">
-        <span class="activity-icon" aria-hidden="true">⚡</span><span class="activity-kicker">QUICK WIN</span>
-        <strong>Do a quick practice</strong><span>Immediate feedback, no clock ticking.</span><span class="arrow">Challenge me →</span>
-      </button>
-      <button class="activity-card card-green" data-go="cases">
-        <span class="activity-icon" aria-hidden="true">🩺</span><span class="activity-kicker">APPLY</span>
-        <strong>Think clinically</strong><span>Use vocabulary in realistic patient situations.</span><span class="arrow">Open a case →</span>
-      </button>
-      <button class="activity-card card-indigo" data-go="communication">
-        <span class="activity-icon" aria-hidden="true">💬</span><span class="activity-kicker">COMMUNICATE</span>
-        <strong>Use it professionally</strong><span>Explain, hand over, ask, recommend and write in clinical English.</span><span class="arrow">Open the lab →</span>
-      </button>
-      <button class="activity-card card-aqua" data-go="pronunciation">
-        <span class="activity-icon" aria-hidden="true">🎧</span><span class="activity-kicker">SAY IT</span>
-        <strong>Pronunciation Lab</strong><span>Stress, syllables, tricky sounds and a quick clinical-word workout.</span><span class="arrow">Train my pronunciation →</span>
-      </button>
-      <button class="activity-card card-pink" data-go="notebook">
-        <span class="activity-icon" aria-hidden="true">♥</span><span class="activity-kicker">MAKE IT YOURS</span>
-        <strong>My Vocabulary</strong><span>Build a personal word bank and mark terms as mastered.</span><span class="arrow">Open notebook →</span>
-      </button>
-      <button class="activity-card card-teal" data-go="progress">
-        <span class="activity-icon" aria-hidden="true">📈</span><span class="activity-kicker">YOUR NEXT MOVE</span>
-        <strong>My Progress</strong><span>See your learning signals and get a focused next-step plan.</span><span class="arrow">Show my plan →</span>
-      </button>
-      <button class="activity-card card-yellow" data-go="search">
-        <span class="activity-icon" aria-hidden="true">🔎</span><span class="activity-kicker">FIND IT FAST</span>
-        <strong>Look up a term</strong><span>Search English, French, definitions and collocations.</span><span class="arrow">Open dictionary →</span>
-      </button>
+    <section class="path-grid" aria-label="Learning paths">
+      <article class="path-card path-learn">
+        <div class="path-icon" aria-hidden="true">📚</div><span class="activity-kicker">LEARN</span>
+        <h3>Build your clinical vocabulary</h3><p>Explore terms, look them up and work on how they sound.</p>
+        <div class="path-links"><button data-go="lexicon">Lexicon</button><button data-go="search">Dictionary</button><button data-go="pronunciation">Pronunciation</button></div>
+      </article>
+      <article class="path-card path-practise">
+        <div class="path-icon" aria-hidden="true">⚡</div><span class="activity-kicker">PRACTISE</span>
+        <h3>Turn recognition into recall</h3><p>Use flashcards, short games and a proper progress check.</p>
+        <div class="path-links"><button data-go="flashcards">Flashcards</button><button data-go="practice">Practice</button><button data-go="test">Check-up</button></div>
+      </article>
+      <article class="path-card path-clinical">
+        <div class="path-icon" aria-hidden="true">🩺</div><span class="activity-kicker">CLINICAL</span>
+        <h3>Use English like a clinician</h3><p>Apply terminology to patient situations and professional communication.</p>
+        <div class="path-links"><button data-go="cases">Cases</button><button data-go="communication">Communication Lab</button></div>
+      </article>
+      <article class="path-card path-personal">
+        <div class="path-icon" aria-hidden="true">♥</div><span class="activity-kicker">MY LEARNING</span>
+        <h3>Keep the useful stuff together</h3><p>Save vocabulary, revisit difficult terms and follow your next-step plan.</p>
+        <div class="path-links"><button data-go="notebook">My Vocabulary</button><button data-go="progress">My Progress</button></div>
+      </article>
     </section>
 
     <section class="platform-strip extra" aria-label="Platform content">
@@ -552,14 +589,14 @@
     <p class="footer-credit"><strong>Designed and created by Eglantine Lecomte and Amaury Lemoine, with the assistance of ChatGPT.</strong></p>
     <div class="privacy-note" aria-label="Privacy and GDPR information">
       <p><strong>Privacy &amp; GDPR</strong> · This learning tool is designed according to data-minimisation principles. No account is required, and the site itself does not collect, transmit or store personal data on a remote server.</p>
-      <p>Saved vocabulary, learning progress, flashcard results, recent practice summaries, progress-check history, 5-minute-session history, recent dictionary searches, Clinical Communication progress, Pronunciation Lab ratings and accessibility preferences are stored only on this device in your browser’s local storage. Pronunciation recordings made with the optional microphone tool are temporary playback recordings: the learning tool does not upload them or save them to local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
+      <p>Saved vocabulary, learning progress, your last learning area, flashcard results, recent practice summaries, progress-check history, 5-minute-session history, recent dictionary searches, Clinical Communication progress, Pronunciation Lab ratings and accessibility preferences are stored only on this device in your browser’s local storage. Pronunciation recordings made with the optional microphone tool are temporary playback recordings: the learning tool does not upload them or save them to local storage. To make the app work offline, the browser may also cache the site’s own static files on this device; this offline cache does not contain personal information. No analytics, advertising trackers or third-party cookies are used by the learning tool. Local data can be removed at any time by clearing the site data in the browser; saved vocabulary can also be deleted from <em>My Vocabulary</em>.</p>
       <p class="hosting-note">The website is hosted on GitHub Pages. Standard technical connection data may therefore be processed by GitHub as hosting provider under its own privacy policy.</p>
     </div>
   </div>
 </footer>
-<script src="vocabulary-v12.js"></script>
-<script src="app-v12.js"></script>
-<script src="communication-v12.js"></script>
-<script src="pronunciation-v12.js"></script>
+<script src="vocabulary-v13.js"></script>
+<script src="app-v13.js"></script>
+<script src="communication-v13.js"></script>
+<script src="pronunciation-v13.js"></script>
 </body>
 </html>
