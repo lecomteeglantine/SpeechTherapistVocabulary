@@ -70,7 +70,30 @@ const CASE_ROWS=[
 ];
 let currentCase=0;
 $("#caseSelect").innerHTML=CASE_ROWS.map((c,i)=>'<option value="'+i+'">'+esc(c[0])+'</option>').join("");
-function showCase(){currentCase=Number($("#caseSelect").value)||0;let c=CASE_ROWS[currentCase],mode=$("#caseMode").value;let guided=mode==="guided";$("#caseStage").innerHTML='<div class="activity-top"><span class="pill">Fictional case · '+esc(c[1])+'</span><span class="pill">'+esc(mode)+'</span></div><h3 class="question-title">'+esc(c[0])+'</h3><p class="task-prompt">'+esc(c[2])+'</p><div class="subtle-card"><strong>Your task</strong><p>'+esc(c[3])+'</p></div>'+(guided?'<div class="subtle-card"><strong>Useful vocabulary</strong><p>'+esc(c[5])+'</p></div>':"")+'<label for="caseResponse"><strong>Your answer</strong></label><textarea id="caseResponse" placeholder="Write or prepare a short oral response in English…"></textarea><div class="activity-foot"><button class="btn primary" id="revealCase">Compare with a model →</button></div><div id="caseResult"></div>';$("#revealCase").addEventListener("click",()=>{S.seenCases[currentCase]=true;save();$("#caseResult").innerHTML='<div class="model-answer"><strong>Possible model answer</strong><p>'+esc(c[4])+'</p><p><strong>Key terms:</strong> '+esc(c[5])+'</p></div><p class="hint">This is a language model, not a clinical diagnosis or automatic grade.</p>';$("#revealCase").disabled=true})}
+function showCase(){
+  currentCase=Number($("#caseSelect").value)||0;
+  const c=CASE_ROWS[currentCase],mode=$("#caseMode").value,guided=mode==="guided";
+  const correct=c[5].split(", ").map(w=>T.find(t=>t.en===w)).filter(Boolean);
+  const distractors=shuffle(T.filter(t=>!correct.includes(t)),hash(c[0]+"|distractors")).slice(0,4);
+  const termPicker=guided?'<div class="subtle-card"><strong>Choose up to five useful terms</strong><p>Select terms that could help you describe this case.</p><div class="chips">'+shuffle(correct.concat(distractors),hash(c[0]+"|order")).map(t=>'<button type="button" data-case-pick="'+t.id+'">'+esc(t.en)+'</button>').join("")+'</div></div>':"";
+  const instruction=mode==="challenge"?"Without prompts, write a concise professional summary: one strength, one observation and one appropriate next step. Avoid diagnosing.":c[3];
+  $("#caseStage").innerHTML='<div class="activity-top"><span class="pill">Fictional case · '+esc(c[1])+'</span><span class="pill">'+esc(mode)+'</span></div><h3 class="question-title">'+esc(c[0])+'</h3><p class="task-prompt">'+esc(c[2])+'</p><div class="subtle-card"><strong>Your task</strong><p>'+esc(instruction)+'</p></div>'+termPicker+'<label for="caseResponse"><strong>Your answer</strong></label><textarea id="caseResponse" placeholder="Write or prepare a short oral response in English…"></textarea><div class="activity-foot"><button class="btn primary" id="revealCase">Compare with a model →</button></div><div id="caseResult"></div>';
+  const picked=new Set();
+  $$("[data-case-pick]",$("#caseStage")).forEach(button=>button.addEventListener("click",()=>{
+    let id=Number(button.dataset.casePick);
+    if(picked.has(id))picked.delete(id);
+    else if(picked.size<5)picked.add(id);
+    else{toast("Choose up to five terms.");return}
+    button.classList.toggle("picked",picked.has(id));
+  }));
+  $("#revealCase").addEventListener("click",()=>{
+    S.seenCases[currentCase]=true;save();
+    const count=[...picked].filter(id=>correct.some(t=>t.id===id)).length;
+    const feedback=guided?'<p>You selected '+count+' of the '+correct.length+' suggested terms. Other relevant vocabulary may also be appropriate.</p>':"";
+    $("#caseResult").innerHTML='<div class="model-answer">'+feedback+'<strong>Possible model answer</strong><p>'+esc(c[4])+'</p><p><strong>Key terms:</strong> '+esc(c[5])+'</p></div><p class="hint">This is a language model, not a clinical diagnosis or automatic grade.</p>';
+    $("#revealCase").disabled=true;
+  });
+}
 $("#caseSelect").addEventListener("change",showCase);$("#caseMode").addEventListener("change",showCase);$("#randomCase").addEventListener("click",()=>{$("#caseSelect").value=(currentCase+1+hash(String(Date.now()))%(CASE_ROWS.length-1))%CASE_ROWS.length;showCase()});showCase();
 /* Communication tasks */
 const TASK_ROWS=[
@@ -89,7 +112,17 @@ const TASK_ROWS=[
 ];
 let currentTask=0;
 $("#commSelect").innerHTML=TASK_ROWS.map((t,i)=>'<option value="'+i+'">'+esc(t[0])+'</option>').join("");
-function showTask(){currentTask=Number($("#commSelect").value)||0;let t=TASK_ROWS[currentTask],mode=$("#commMode").value;$("#commStage").innerHTML='<div class="activity-top"><span class="pill">Audience: '+esc(t[1])+'</span><span class="pill">'+esc(mode)+'</span></div><h3 class="question-title">'+esc(t[0])+'</h3><p class="task-prompt">'+esc(t[2])+'</p>'+(mode==="challenge"?"":'<div class="subtle-card"><strong>Useful language</strong><p>'+esc(t[4])+'</p></div>')+'<label for="commResponse"><strong>Your response</strong></label><textarea id="commResponse" placeholder="Write or plan what you would say aloud…"></textarea><div class="activity-foot"><button class="btn primary" id="revealTask">Compare with a model →</button></div><div id="taskResult"></div>';$("#revealTask").addEventListener("click",()=>{S.seenTasks[currentTask]=true;save();$("#taskResult").innerHTML='<div class="model-answer"><strong>Possible model answer</strong><p>'+esc(t[3])+'</p></div><p class="hint">Self-check: Is your English clear, respectful and appropriate for the audience?</p>';$("#revealTask").disabled=true})}
+function showTask(){
+  currentTask=Number($("#commSelect").value)||0;
+  const task=TASK_ROWS[currentTask],mode=$("#commMode").value;
+  const hint=mode==="guided"?'<div class="subtle-card"><strong>Useful language</strong><p>'+esc(task[4])+'</p></div>':mode==="clinical"?'<p class="hint">Aim for clear, respectful professional English. Keep the intended audience in mind.</p>':'<p class="hint">Challenge: respond in 60 words or fewer, with no language prompts.</p>';
+  $("#commStage").innerHTML='<div class="activity-top"><span class="pill">Audience: '+esc(task[1])+'</span><span class="pill">'+esc(mode)+'</span></div><h3 class="question-title">'+esc(task[0])+'</h3><p class="task-prompt">'+esc(task[2])+'</p>'+hint+'<label for="commResponse"><strong>Your response</strong></label><textarea id="commResponse" placeholder="Write or plan what you would say aloud…"></textarea><div class="activity-foot"><button class="btn primary" id="revealTask">Compare with a model →</button></div><div id="taskResult"></div>';
+  $("#revealTask").addEventListener("click",()=>{
+    S.seenTasks[currentTask]=true;save();
+    $("#taskResult").innerHTML='<div class="model-answer"><strong>Possible model answer</strong><p>'+esc(task[3])+'</p></div><p class="hint">Self-check: Is your English clear, respectful and appropriate for the audience?</p>';
+    $("#revealTask").disabled=true;
+  });
+}
 $("#commSelect").addEventListener("change",showTask);$("#commMode").addEventListener("change",showTask);$("#randomComm").addEventListener("click",()=>{$("#commSelect").value=(currentTask+1+hash(String(Date.now()))%(TASK_ROWS.length-1))%TASK_ROWS.length;showTask()});showTask();
 /* Pronunciation: device speech, learner self-ratings */
 let P={terms:[],i:0};
