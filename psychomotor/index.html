@@ -9,6 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="hero.webp" type="image/webp">
   <link rel="stylesheet" href="styles.css">
   <script src="data.js" defer></script>
   <script src="app.js" defer></script>
@@ -62,19 +63,8 @@
           <div class="hero-actions"><button class="btn btn-light" id="startFive">✨ Meet 5 essential words</button><button class="btn btn-outline-light" id="startBoost">⏱ Five-minute boost</button></div>
           <div class="hero-tags"><span>A2 → B2</span><span>English ↔ Français</span><span>No account required</span></div>
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <svg viewBox="0 0 360 340" role="presentation"><defs><linearGradient id="heroGrad" x1="0" x2="1"><stop stop-color="#bae9d3"/><stop offset="1" stop-color="#a5d9e8"/></linearGradient></defs>
-          <circle cx="180" cy="163" r="141" fill="url(#heroGrad)" opacity=".35"/><circle cx="180" cy="162" r="110" fill="none" stroke="#d9f6f1" stroke-width="2" stroke-dasharray="6 9"/>
-          <path d="M180 83c19 0 34 15 34 34s-15 34-34 34-34-15-34-34 15-34 34-34z" fill="#f3bca6"/>
-          <path d="M168 151c-25 3-42 28-49 53l-29 19 16 21 43-21 9-30 3 95h39l7-93 12 28 41 21 15-22-31-22c-5-31-28-50-50-49z" fill="#fdf8e8"/>
-          <path d="M161 288l-13 34h27l8-34m17 0 9 34h28l-18-34" fill="#4f8498"/>
-          <path d="M166 151c-27 8-32 43-38 60m69-60c31 7 35 40 44 59" stroke="#4d7485" stroke-width="7" stroke-linecap="round" fill="none"/>
-          <circle cx="79" cy="112" r="26" fill="#fff3cf"/><path d="M68 114q12-22 24 0" fill="none" stroke="#ab7831" stroke-width="4" stroke-linecap="round"/>
-          <circle cx="273" cy="97" r="30" fill="#ffcfb3"/><path d="m262 102 9-14 11 14" stroke="#ae6353" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <circle cx="288" cy="258" r="24" fill="#d6e7ff"/><path d="m278 257 8 8 13-16" stroke="#4b719e" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <circle cx="68" cy="253" r="20" fill="#cef3dd"/><path d="M59 253h18m-9-9v18" stroke="#4a9870" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-          <div class="art-label art-one">body awareness</div><div class="art-label art-two">movement</div><div class="art-label art-three">confidence</div>
+        <div class="hero-art">
+          <img src="hero.webp" width="460" height="469" alt="Anatomical illustration of the human musculature during a natural walking stride" decoding="async" fetchpriority="high">
         </div>
       </div>
       <div class="stats-strip"><div><strong id="totalTerms">—</strong><span>specialist terms</span></div><div><strong id="totalAreas">—</strong><span>topic areas</span></div><div><strong id="savedHome">0</strong><span>saved words</span></div><div><strong id="masteredHome">0</strong><span>mastered words</span></div></div>

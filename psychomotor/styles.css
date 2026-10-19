@@ -26,3 +26,19 @@ body.simple .hero-art,body.simple .art-label{display:none}body.simple .hero{grid
   .nav-group[open]{order:20;flex-basis:100%;width:100%}
   .nav-group[open] .nav-panel{position:static!important;left:auto!important;right:auto!important;top:auto!important;width:100%;min-width:0;margin-top:5px;box-shadow:none}
 }
+
+
+/* Anatomical walking illustration: replace the former decorative SVG completely */
+.hero{background:linear-gradient(110deg,#214c63 1%,#28676b 75%,#1b6d77 100%);grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr)}
+.hero-art{display:block;position:relative;overflow:hidden;min-height:460px}
+.hero-art img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:none}
+.hero-art::before{content:"";pointer-events:none;position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(38,105,107,.8),transparent 19%)}
+.art-label{display:none!important}
+body.simple .hero-art{display:block}
+@media(max-width:680px){
+ .hero{grid-template-columns:1fr}
+ .hero-art{display:block;min-height:0;height:clamp(265px,95vw,385px)}
+ .hero-art img{object-fit:contain;object-position:center center}
+ .hero-art::before{display:none}
+ .hero-copy{padding:35px 23px 18px}
+}

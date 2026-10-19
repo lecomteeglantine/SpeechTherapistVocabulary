@@ -1,6 +1,6 @@
 /* Psychomotor Therapy English — network-first update strategy with offline fallback */
-const CACHE="psychomotor-english-v2";
-const ASSETS=["./","./index.html","./styles.css","./data.js","./app.js","./icon.svg","./manifest.webmanifest"];
+const CACHE="psychomotor-english-v3";
+const ASSETS=["./","./index.html","./styles.css","./data.js","./app.js","./icon.svg","./manifest.webmanifest","./hero.webp"];
 self.addEventListener("install",event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
   self.skipWaiting();
