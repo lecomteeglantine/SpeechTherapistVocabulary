@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#244f66">
+  <meta name="description" content="A mobile-friendly English–French vocabulary and clinical communication learning app for psychomotor therapy students.">
+  <meta name="application-version" content="1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+  <title>Psychomotor Therapy English · Learn, practise, apply</title>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="shell header-top">
+      <a class="brand" href="#home" aria-label="Psychomotor Therapy English, home">
+        <span class="brand-icon" aria-hidden="true">✳</span><span><strong>Psychomotor Therapy English</strong><small>Clinical English for future psychomotor therapists</small></span>
+      </a>
+      <div class="header-right">
+        <span id="offlineBadge" class="online-badge">● Ready to learn</span>
+        <details class="access-menu"><summary>⚙ Accessibility</summary><div class="access-panel" aria-label="Display preferences">
+          <button type="button" id="smaller">A−</button><button type="button" id="larger">A+</button>
+          <button type="button" id="dark">Dark mode</button><button type="button" id="contrast">High contrast</button>
+          <button type="button" id="motion">Reduce motion</button><button type="button" id="simple">Simple layout</button>
+        </div></details>
+      </div>
+    </div>
+    <nav class="shell nav" aria-label="Main navigation">
+      <button data-view="home" class="active">⌂ Home</button>
+      <details class="nav-group"><summary>📚 Learn <span aria-hidden="true">⌄</span></summary><div class="nav-panel">
+        <button data-view="lexicon">📚 Lexicon <small>Explore all the words</small></button>
+        <button data-view="dictionary">🔎 Dictionary <small>Search English or French</small></button>
+        <button data-view="pronunciation">🎧 Pronunciation <small>Listen and repeat</small></button>
+      </div></details>
+      <details class="nav-group"><summary>⚡ Practise <span aria-hidden="true">⌄</span></summary><div class="nav-panel">
+        <button data-view="flashcards">🧠 Flashcards <small>Remember your words</small></button>
+        <button data-view="practice">🎲 Games <small>Five practice modes</small></button>
+        <button data-view="checkup">📊 Check-up <small>24 questions</small></button>
+      </div></details>
+      <details class="nav-group"><summary>🩺 Clinical <span aria-hidden="true">⌄</span></summary><div class="nav-panel">
+        <button data-view="cases">🩺 Clinical Cases <small>Observe and reason</small></button>
+        <button data-view="communication">💬 Communication Lab <small>Speak and write</small></button>
+      </div></details>
+      <details class="nav-group"><summary>♥ My Learning <span class="nav-counter" id="navCount">0</span> <span aria-hidden="true">⌄</span></summary><div class="nav-panel">
+        <button data-view="notebook">♥ My Vocabulary <small>Your saved word bank</small></button>
+        <button data-view="progress">📈 My Progress <small>Your next best step</small></button>
+      </div></details>
+    </nav>
+  </header>
+  <main id="main" class="shell" tabindex="-1">
+    <section id="home" class="view active" aria-labelledby="homeTitle">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">MOVE · FEEL · THINK · CONNECT</p>
+          <h1 id="homeTitle">English for <em>psychomotor therapy.</em><br>Learn it. Use it.</h1>
+          <p class="hero-description">Discover the language of body awareness, movement, sensory experience and clinical care. Learn in short steps, with useful examples and real-life scenarios.</p>
+          <div class="hero-actions"><button class="btn btn-light" id="startFive">✨ Meet 5 essential words</button><button class="btn btn-outline-light" id="startBoost">⏱ Five-minute boost</button></div>
+          <div class="hero-tags"><span>A2 → B2</span><span>English ↔ Français</span><span>No account required</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 360 340" role="presentation"><defs><linearGradient id="heroGrad" x1="0" x2="1"><stop stop-color="#bae9d3"/><stop offset="1" stop-color="#a5d9e8"/></linearGradient></defs>
+          <circle cx="180" cy="163" r="141" fill="url(#heroGrad)" opacity=".35"/><circle cx="180" cy="162" r="110" fill="none" stroke="#d9f6f1" stroke-width="2" stroke-dasharray="6 9"/>
+          <path d="M180 83c19 0 34 15 34 34s-15 34-34 34-34-15-34-34 15-34 34-34z" fill="#f3bca6"/>
+          <path d="M168 151c-25 3-42 28-49 53l-29 19 16 21 43-21 9-30 3 95h39l7-93 12 28 41 21 15-22-31-22c-5-31-28-50-50-49z" fill="#fdf8e8"/>
+          <path d="M161 288l-13 34h27l8-34m17 0 9 34h28l-18-34" fill="#4f8498"/>
+          <path d="M166 151c-27 8-32 43-38 60m69-60c31 7 35 40 44 59" stroke="#4d7485" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <circle cx="79" cy="112" r="26" fill="#fff3cf"/><path d="M68 114q12-22 24 0" fill="none" stroke="#ab7831" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="273" cy="97" r="30" fill="#ffcfb3"/><path d="m262 102 9-14 11 14" stroke="#ae6353" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="288" cy="258" r="24" fill="#d6e7ff"/><path d="m278 257 8 8 13-16" stroke="#4b719e" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="68" cy="253" r="20" fill="#cef3dd"/><path d="M59 253h18m-9-9v18" stroke="#4a9870" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+          <div class="art-label art-one">body awareness</div><div class="art-label art-two">movement</div><div class="art-label art-three">confidence</div>
+        </div>
+      </div>
+      <div class="stats-strip"><div><strong id="totalTerms">—</strong><span>specialist terms</span></div><div><strong id="totalAreas">—</strong><span>topic areas</span></div><div><strong id="savedHome">0</strong><span>saved words</span></div><div><strong id="masteredHome">0</strong><span>mastered words</span></div></div>
+      <div class="section-title"><p class="eyebrow ink">START HERE</p><h2>Choose your way in.</h2><p>Quick, useful activities — no complicated setup.</p></div>
+      <div class="feature-grid">
+        <button class="feature-card teal" data-view="lexicon"><span class="feature-icon">📚</span><strong>Explore the lexicon</strong><span>Understand the words, then hear them in context.</span><b>Browse terms →</b></button>
+        <button class="feature-card apricot" data-view="flashcards"><span class="feature-icon">🧠</span><strong>Train your memory</strong><span>Reveal meanings and revisit the words you missed.</span><b>Start flashcards →</b></button>
+        <button class="feature-card lavender" data-view="practice"><span class="feature-icon">🎲</span><strong>Play to remember</strong><span>Translate, listen, fill gaps and spot definitions.</span><b>Choose a game →</b></button>
+        <button class="feature-card lemon" data-view="cases"><span class="feature-icon">🩺</span><strong>Think clinically</strong><span>Work through realistic but fictional psychomotor cases.</span><b>Open cases →</b></button>
+      </div>
+      <div class="home-tip"><div><span class="eyebrow ink">YOUR LEARNING SPACE</span><h3>Pick up where you left off.</h3><p id="nextSuggestion">Start with a few useful words. Your learning progress stays on this device.</p></div><button class="btn primary" data-view="progress">See my next step →</button></div>
+    </section>
+    <section class="view" id="lexicon" aria-labelledby="lexTitle">
+      <div class="page-heading"><span class="page-emoji">📚</span><p class="eyebrow ink">EXPLORE</p><h2 id="lexTitle">Clinical Lexicon</h2><p>Search, filter and save professional vocabulary. Tap a term for its definition, example and pronunciation.</p></div>
+      <div class="filter-panel"><label>Search in English or French<input id="lexSearch" type="search" placeholder="Try muscle tone, schéma corporel, praxis…" autocomplete="off"></label><label>Area<select id="lexArea"></select></label><label>Level<select id="lexLevel"><option value="">All levels</option><option>A2</option><option>B1</option><option>B2</option></select></label></div>
+      <p class="result-count" id="lexCount" aria-live="polite"></p><div class="term-grid" id="lexList"></div>
+    </section>
+    <section class="view" id="dictionary" aria-labelledby="dictTitle">
+      <div class="page-heading"><span class="page-emoji">🔎</span><p class="eyebrow ink">LOOK IT UP</p><h2 id="dictTitle">English ↔ French Dictionary</h2><p>Find a term quickly, even if you only remember part of the word.</p></div>
+      <label class="search-wide">Search the dictionary<input type="search" id="dictSearch" placeholder="body image, coordination, équilibre…"></label><div id="dictResults" class="term-grid"></div><p class="muted">Tip: open any result to see a plain-English definition, clinical example and useful collocation.</p>
+    </section>
+    <section class="view" id="flashcards" aria-labelledby="flashTitle">
+      <div class="page-heading"><span class="page-emoji">🧠</span><p class="eyebrow ink">REMEMBER</p><h2 id="flashTitle">Smart Flashcards</h2><p>Try to recall the French meaning before flipping. Mark what needs another look.</p></div>
+      <div class="filter-panel compact"><label>Revise<select id="flashSource"><option value="all">All vocabulary</option><option value="saved">Saved words</option><option value="review">Words to review</option></select></label><label>Area<select id="flashArea"></select></label><label>Session size<select id="flashSize"><option>5</option><option selected>10</option><option>20</option></select></label><button class="btn primary" id="newFlash">↻ New session</button></div>
+      <div id="flashStatus" class="result-count" aria-live="polite"></div>
+      <button id="flashCard" class="flashcard" type="button" aria-label="Flip flashcard"><span id="flashPrompt">Start a session above</span><strong id="flashWord">Ready?</strong><span id="flashHint">Tap to reveal the meaning.</span></button>
+      <div class="answer-actions" id="flashButtons"><button class="btn warn" data-grade="again">↻ Again <small>1</small></button><button class="btn gentle" data-grade="hard">◐ Hard <small>2</small></button><button class="btn success" data-grade="got">✓ Got it <small>3</small></button></div><p class="hint">Keyboard: Enter flips the card · 1 Again · 2 Hard · 3 Got it</p>
+    </section>
+    <section class="view" id="practice" aria-labelledby="practiceTitle">
+      <div class="page-heading"><span class="page-emoji">🎲</span><p class="eyebrow ink">PLAY · PRACTISE · REMEMBER</p><h2 id="practiceTitle">Vocabulary Games</h2><p>Short sessions with instant explanations. No timer, no pressure.</p></div>
+      <div class="modes" id="gameModes">
+        <button data-mode="definition" class="selected">🕵️ <strong>Definition Detective</strong><small>Meaning → word</small></button><button data-mode="translation">🇫🇷 <strong>French → English</strong><small>Translate it</small></button><button data-mode="gap">🩺 <strong>Clinical Gap</strong><small>Complete the sentence</small></button><button data-mode="listen">🎧 <strong>Listen & Spot</strong><small>Hear and choose</small></button><button data-mode="collocation">🔗 <strong>Natural English</strong><small>Match the phrase</small></button><button data-mode="mixed">🎯 <strong>Mix It Up</strong><small>A little of everything</small></button>
+      </div>
+      <div class="filter-panel compact"><label>Vocabulary<select id="gameSource"><option value="all">All vocabulary</option><option value="saved">My saved words</option></select></label><label>Area<select id="gameArea"></select></label><label>Questions<select id="gameSize"><option>5</option><option selected>10</option><option>15</option></select></label><button id="startGame" class="btn primary">▶ Start game</button></div>
+      <div class="activity-panel" id="gameStage"><p class="empty-message">Choose a game above to begin.</p></div>
+    </section>
+    <section class="view" id="cases" aria-labelledby="casesTitle">
+      <div class="page-heading"><span class="page-emoji">🩺</span><p class="eyebrow ink">FROM WORDS TO PRACTICE</p><h2 id="casesTitle">Clinical Case Lab</h2><p>Fictional cases for language learning, not diagnosis or clinical decision-making.</p></div>
+      <div class="filter-panel compact"><label>Case<select id="caseSelect"></select></label><label>Support<select id="caseMode"><option value="guided">🧭 Guided</option><option value="clinical">🩺 Clinical</option><option value="challenge">🔥 Challenge</option></select></label><button id="randomCase" class="btn soft">🎲 Random case</button></div><div class="activity-panel" id="caseStage"></div>
+    </section>
+    <section class="view" id="communication" aria-labelledby="commTitle">
+      <div class="page-heading"><span class="page-emoji">💬</span><p class="eyebrow ink">EXPLAIN · HAND OVER · WRITE</p><h2 id="commTitle">Communication Lab</h2><p>Practise professional English for parents, patients and colleagues — with optional help.</p></div>
+      <div class="language-bank"><details><summary>🧰 Open the useful language bank</summary><div class="bank-grid"><div><strong>Describe an observation</strong><p>I noticed that…<br>The child was able to…<br>They needed support to…</p></div><div><strong>Talk to a family</strong><p>The aim of this activity is…<br>We can try…<br>Would you like me to show you?</p></div><div><strong>Present a case</strong><p>The referral concerns…<br>Key observations include…<br>The next step is…</p></div><div><strong>Be appropriately cautious</strong><p>This may suggest…<br>Further assessment may be helpful.<br>We cannot conclude from one session.</p></div></div></details></div>
+      <div class="filter-panel compact"><label>Task<select id="commSelect"></select></label><label>Support<select id="commMode"><option value="guided">🧭 Guided</option><option value="clinical">🩺 Clinical</option><option value="challenge">🔥 Challenge</option></select></label><button id="randomComm" class="btn soft">🎲 Random task</button></div><div class="activity-panel" id="commStage"></div>
+    </section>
+    <section class="view" id="pronunciation" aria-labelledby="pronTitle">
+      <div class="page-heading"><span class="page-emoji">🎧</span><p class="eyebrow ink">HEAR IT · SAY IT</p><h2 id="pronTitle">Pronunciation Lab</h2><p>Hear a British-English voice when supported by your device, then rate how comfortable the term feels.</p></div>
+      <div class="filter-panel compact"><label>Area<select id="pronArea"></select></label><label>Workout size<select id="pronSize"><option selected>5</option><option>10</option></select></label><button id="startPron" class="btn primary">▶ Start workout</button></div><div class="activity-panel" id="pronStage"><p class="empty-message">Start with five terms. You will hear, repeat and rate each one.</p></div><p class="hint">Audio uses your browser's speech synthesis. Availability and voice quality depend on your device. This site does not record your voice.</p>
+    </section>
+    <section class="view" id="checkup" aria-labelledby="checkTitle">
+      <div class="page-heading"><span class="page-emoji">📊</span><p class="eyebrow ink">FIND YOUR NEXT STEP</p><h2 id="checkTitle">24-Question Check-up</h2><p>A balanced review of body and movement, development and sensory experience, assessment and interventions.</p></div>
+      <div class="activity-panel" id="checkStage"><p>Eight questions per area. Instant feedback is given at the end, with a useful revision suggestion.</p><button id="beginCheck" class="btn primary">▶ Start my check-up</button></div><div id="checkHistory" class="check-history"></div>
+    </section>
+    <section class="view" id="notebook" aria-labelledby="noteTitle">
+      <div class="page-heading"><span class="page-emoji">♥</span><p class="eyebrow ink">YOUR OWN WORD BANK</p><h2 id="noteTitle">My Vocabulary</h2><p>Save useful terms and return to the ones you find tricky. Everything stays in this browser.</p></div>
+      <div class="filter-panel compact"><label>Search saved words<input type="search" id="noteSearch" placeholder="Find a saved term"></label><label>Status<select id="noteStatus"><option value="">All saved</option><option value="review">Needs review</option><option value="mastered">Mastered</option></select></label><button id="exportNotes" class="btn soft">↓ Export CSV</button><button id="clearNotes" class="btn quiet">Clear notebook</button></div><p class="result-count" id="noteCount"></p><div id="noteList" class="term-grid"></div>
+    </section>
+    <section class="view" id="progress" aria-labelledby="progressTitle">
+      <div class="page-heading"><span class="page-emoji">📈</span><p class="eyebrow ink">YOUR NEXT STEP</p><h2 id="progressTitle">My Learning Progress</h2><p>Useful signals rather than grades. Your records stay on your device.</p></div>
+      <div class="stats-strip on-light" id="progressStats"></div><div class="activity-panel" id="progressAdvice"></div><h3>Vocabulary by topic</h3><div id="topicProgress" class="topic-progress"></div><p class="hint">This tool supports vocabulary learning; it does not assess clinical competence or pronunciation accuracy.</p>
+    </section>
+  </main>
+  <footer class="footer"><div class="shell"><strong>Psychomotor Therapy English</strong><p>Made for psychomotor therapy students · Inspired by Speech Therapy English. Core concepts informed by the <a href="https://european-forum-of-psychomotricity.eu/psychomotricity/professional-competences/" target="_blank" rel="noopener">European Forum of Psychomotricity</a>.</p><details><summary>Privacy & accessibility</summary><p>No account, analytics or advertising. Words saved, progress and display preferences are stored only in your browser using local storage; clear your browser site data to remove them. Speech playback uses your device's own voices. No microphone access. The hosting provider may process normal connection logs. Keyboard and reduced-motion options are available.</p></details></div></footer>
+  <dialog id="termDialog" aria-labelledby="dialogTitle"><div class="dialog-inner"><button id="closeDialog" class="dialog-close" aria-label="Close term details">✕</button><div id="termDetail"></div></div></dialog>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+</body></html>
